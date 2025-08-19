@@ -1,4 +1,4 @@
-import { createChessBoard } from "/display.js";
+import { createChessBoard } from "./display.js";
 
 
 createChessBoard()
