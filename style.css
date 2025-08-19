@@ -1,1 +1,19 @@
+div#chessboard {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);;
+    grid-template-rows: repeat(8, 1fr);;
+}
 
+div#chessboard > div:hover {
+    background-color: lightgray !important;
+}
+
+#gameContainer {
+    border: 1px solid black;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
