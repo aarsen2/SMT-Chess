@@ -1,9 +1,8 @@
-//import { createChessBoard } from "/display.js";
+import { createChessBoard } from "/display.js";
 
 
-//createChessBoard()
+createChessBoard()
 
-alert("Hello from script.js!");
 /*
 let boardArray = Array(8).fill(null).map(() => Array(8).fill(null));;
 
