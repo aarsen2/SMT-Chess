@@ -3,8 +3,7 @@
 
 //createChessBoard()
 
-alert("hi")
-
+alert("Hello from script.js!");
 /*
 let boardArray = Array(8).fill(null).map(() => Array(8).fill(null));;
 
