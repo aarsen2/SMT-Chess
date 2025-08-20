@@ -18,12 +18,14 @@ export class Display {
 
   }
 
-  hightlightCell(location) {
+  highlightCell(location) {
     console.log("Highlighting cell at " + location)
+    document.getElementById(`${location[0]},${location[1]}`).classList.add("selected")
   }
 
-  unhightlight() {
-    
+  unhighlightCell(location) {
+    console.log("Unhighlighting cell at " + location)
+    document.getElementById(`${location[0]},${location[1]}`).classList.remove("selected")
   }
 
   #initializeBoard() {

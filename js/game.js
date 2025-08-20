@@ -9,6 +9,7 @@ export class Game {
         this.player1 = new Player("Aaron", 1);
         this.player2 = new Player("Ashton", 2);
         this.highlightCell = null
+        this.unhighlightCell = null
         //method calls
         this.initializeBoard()
         
@@ -21,7 +22,7 @@ export class Game {
     }
     //Random Properties
     #selectedCell = [];
-
+    #currentlySelected = false;
 
 
 
@@ -43,7 +44,20 @@ export class Game {
 
     selectCell(location) {
         console.log(`You clickd on ${location[0]}, ${location[1]}`)
-        this.#selectedCell = location
-        this.highlightCell(location)
+
+        if (!this.#currentlySelected && this.#selectedCell != location) {
+            this.#currentlySelected = true;
+            this.#selectedCell = location
+            this.highlightCell(location)
+        }
+
+
+        
+        else if (this.#selectedCell[0] == location[0] && this.#selectedCell[1] == location[1]) {
+            this.unhighlightCell(location)
+            this.#currentlySelected = false;
+        }
+    
+
     }
 }

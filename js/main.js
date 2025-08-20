@@ -11,7 +11,10 @@ display.onCellClick = (location) => {
 }
 
 game.highlightCell = (location) => {
-    display.hightlightCell(location)
+    display.highlightCell(location)
+}
+game.unhighlightCell = (location) => {
+    display.unhighlightCell(location)
 }
 
 console.log(`Created display ${display}`)
