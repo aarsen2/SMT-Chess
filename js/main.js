@@ -1,13 +1,17 @@
-import { Display } from "./display.js"
-import { Game } from "./game.js"
+import { Display } from "./Display.js"
+import { Game } from "./Game.js"
 
 
 
-let display = new Display("chessBoard")
+let game = new Game();
+let display = new Display("chessBoard", game.board)
+
+console.log(`Created display ${display}`)
+console.log(`Created game ${game}`)
 
 initializeGame();
 
 
 function initializeGame() {
-    display.drawBoard()
+    //display.drawBoard(game.board)
 }

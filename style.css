@@ -37,3 +37,16 @@ body {
 .selected {
     background-color: gray;
 }
+
+.boardSquare {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.piece {
+    width: 80%;
+    height: 80%;
+    background-color: black;
+    border-radius: 100%;
+}
