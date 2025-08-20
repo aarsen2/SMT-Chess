@@ -14,4 +14,17 @@ export class Board {
         
         console.log(`Created a new ${piece.type.Name} at ${location[0]} , ${location[1]}`)
     }
+
+    getPiece(location) {
+        return this.grid[location[0]][location[1]]
+    }
+
+    hasPiece(location) {
+        if (this.getPiece(location) != null) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
