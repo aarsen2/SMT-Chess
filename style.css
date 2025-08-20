@@ -17,3 +17,23 @@ body {
     display: flex;
     justify-content: center;
 }
+
+.light {
+    background-color: white;
+}
+
+.dark {
+    background-color: lightgray;
+}
+
+.light:hover {
+    background-color: darkGray;
+}
+
+.dark:hover {
+    background-color: darkGray;
+}
+
+.selected {
+    background-color: gray;
+}
