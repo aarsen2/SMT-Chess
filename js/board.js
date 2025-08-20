@@ -1,5 +1,4 @@
-import { Piece } from "./Piece.js";
-import { PieceType } from "./pieceType.js";
+import { Piece } from "./piece.js";
 
 
 
@@ -10,11 +9,9 @@ export class Board {
 
 
     createPiece(type, player, location) {
-        let pieceType = new PieceType(type)
-        let piece = new Piece(pieceType, player)
-        this.grid[location[0]][location[0]] = piece;
+        let piece = new Piece(type, player)
+        this.grid[location[0]][location[1]] = piece;
         
-        console.log("Created Piece")
-        console.log(`Placed Piece at ${location[0]} , ${location[0]}`)
+        console.log(`Created a new ${piece.type.Name} at ${location[0]} , ${location[1]}`)
     }
 }

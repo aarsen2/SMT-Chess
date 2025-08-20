@@ -1,7 +1,10 @@
+import { demonData } from "./demons.js";
+
+
 export class Piece {
-    constructor(player, type) {
-        //type is a string right now
-        this.type = type;
+    constructor(pieceType, player) {
+        //pieceType is a string that will be used to find the correct piece type frin Demons.js
+        this.type = demonData.find(type => type["Name"] === pieceType)
         //player is a player object
         this.player = player;
     }

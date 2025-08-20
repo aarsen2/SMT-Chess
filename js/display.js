@@ -5,6 +5,7 @@ export class Display {
     this.color2 = "white"
     this.chessBoard = document.getElementById(element)
     this.boardSize = 700;
+    this.onCellClick = null;
 
     //method calls
     this.#initializeBoard();
@@ -17,8 +18,8 @@ export class Display {
 
   }
 
-  hightlight() {
-
+  hightlightCell(location) {
+    console.log("Highlighting cell at " + location)
   }
 
   unhightlight() {
@@ -42,14 +43,25 @@ export class Display {
     for (let row = 0; row < 8; row++) {
       
       for (let column = 0; column < 8; column++) {
+        //create the cells
         let cell = document.createElement("div");
         let cellID = row + "," + column;
+
+
+        //Style the cells
         cell.style.height = this.boardSize / 8 + "px";
         cell.style.width  = this.boardSize / 8 + "px";
         cell.classList.add(((row + column) % 2) ? "light" : "dark")
         cell.classList.add("boardSquare")
         cell.id = cellID;
 
+
+        //create the cell events
+        cell.addEventListener("click", () => {
+          if (this.onCellClick) {
+            this.onCellClick([row, column])    
+          }
+        })
 
         this.chessBoard.appendChild(cell);
       }
@@ -64,18 +76,26 @@ export class Display {
     for (let row = 0; row < 8; row++) {
       for (let column = 0; column < 8; column++) {
         if (board.grid[row][column] != null) {
+          let currentPiece = board.grid[row][column]
           let piece = document.createElement("div");
           let cell = document.getElementById(row + "," + column);
-
+      
           //styles the piece
           piece.classList.add("piece")
-
+          piece.classList.add("player" + currentPiece.player.id)
           //Adds piece
           cell.appendChild(piece)
-          console.log("adding Child")
         }
       }
     }
+  }
+
+  updateSelectedPiece() {
+    document.getElementById
+  }
+
+  updateHoverPiece() {
+
   }
 }
 

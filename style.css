@@ -38,10 +38,15 @@ body {
     background-color: gray;
 }
 
+.boardSquare:active {
+    background-color: gray;
+}
+
 .boardSquare {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .piece {
@@ -50,3 +55,14 @@ body {
     background-color: black;
     border-radius: 100%;
 }
+
+.boardSquare:has(.player2) {
+    background-image: linear-gradient(rgb(200,255,255),rgb(200,255,255));
+    background-blend-mode: multiply;
+}
+
+.boardSquare:has(.player1) {
+    background-image: linear-gradient(rgb(255,200,200),rgb(255,200,200));
+    background-blend-mode: multiply;
+}
+
