@@ -52,7 +52,7 @@ export class Game {
         this.board.createPiece("Baal", this.player1, [0,3]);
         this.board.createPiece("Demonica (SJ)", this.player1, [0,4]);
         this.board.createPiece("Succubus", this.player1, [0,5]);
-        this.board.createPiece("Rangda", this.player1, [0,6]);
+        this.board.createPiece("Decarabia", this.player1, [0,6]);
         this.board.createPiece("Principality", this.player1, [0,7]);
         //player 1 front row
         this.board.createPiece("Lilim", this.player1, [1,0]);
@@ -236,48 +236,134 @@ export class Game {
         let pieceType = selectedPiece.type.Tier;
         let piecePlayer = selectedPiece.player
         let direction = piecePlayer == this.player1 ? 1 : -1;
+        let testSpace = [];
         switch (pieceType) {
             case 1: {
                 //"**********PAWN************"//
                 
                 // Checks 1 space in front of the pawn
-                let testSpace = [location[0] + direction, location[1]];
-                if(this.board.getPiece(testSpace) == null) {
-                    currentLegalMoves[currentLegalMoves.length] = testSpace
-
-                    //Checks 2 paces in front of the pawn and checks to see if it has moved.
-                    testSpace = [location[0] + (direction * 2 ), location[1]]
-                    if (this.board.getPiece(testSpace) == null && !selectedPiece.hasMoved) {
+                testSpace = [location[0] + direction, location[1]];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null) {
                         currentLegalMoves[currentLegalMoves.length] = testSpace
+
+                        //Checks 2 paces in front of the pawn and checks to see if it has moved.
+                        testSpace = [location[0] + (direction * 2 ), location[1]]
+                        if (this.onBoard(testSpace)) {
+                            if (this.board.getPiece(testSpace) == null && !selectedPiece.hasMoved) {
+                                currentLegalMoves[currentLegalMoves.length] = testSpace
+                            }
+                        }
                     }
                 }
 
                 //checks to the right diagonal for enemy
                 testSpace = [location[0] + direction, (location[1] + 1)];
-                if(this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer) {
-                    currentLegalMoves[currentLegalMoves.length] = testSpace
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
                 }
 
                 //checks to the left Diagonal for enemy
                 testSpace = [location[0] + direction, (location[1] - 1)];
-                if(this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer) {
-                    currentLegalMoves[currentLegalMoves.length] = testSpace
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
                 }
 
             } break;
                 
             case 2: {
-
+                //**********KNIGHT**********// //**********BISHOP**********//
             } break;
 
             case 3: {
-
+                //**********ROOK**********//
             } break;
             
             case 4: {
+                //**********QUEEN**********//
             } break;
 
             case 5: {
+                //**********KING**********//
+
+
+
+
+
+                //top middle
+                testSpace = [location[0] - 1, location[1] + 0];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+                //top right
+                testSpace = [location[0] - 1, location[1] + 1];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+                //right middle
+                testSpace = [location[0] + 0, location[1] + 1];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+                //bottom right
+                testSpace = [location[0] + 1, location[1] + 1];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+                //bottom middle
+                testSpace = [location[0] + 1, location[1] + 0];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+                //bottom left
+                testSpace = [location[0] + 1, location[1] - 1];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+                //left middle
+                testSpace = [location[0] + 0, location[1] - 1];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+                //top left
+                testSpace = [location[0] - 1, location[1] - 1];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+
+
+
+
+
+
             } break;
             
             case 6: {
@@ -290,12 +376,12 @@ export class Game {
         this.#legalMoves = currentLegalMoves  
     }
 
-
-
-
-    isLegalMove(selectedCell, location) {
-        let selectedPiece = this.board.getPiece(selectedCell);
-        let pieceType = selectedPiece.type.Tier;
-        let piecePlayer = selectedPiece.player;
+    onBoard(location) {
+        if (location[0] < 8 && location[0] >= 0) {
+            if (location[1] < 8 && location[1] >= 0) {
+                return true;
+            }
+        }
+        else {return false;}
     }
 }
