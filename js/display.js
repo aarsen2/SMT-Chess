@@ -26,9 +26,21 @@ export class Display {
     document.getElementById(`${location[0]},${location[1]}`).classList.add("selected")
   }
 
+  highlightCells(locations) {
+    for (let location of locations) {
+      document.getElementById(`${location[0]},${location[1]}`).classList.add("legalMove")
+    }
+  }
+
   unhighlightCell(location) {
     console.log("Unhighlighting cell at " + location)
     document.getElementById(`${location[0]},${location[1]}`).classList.remove("selected")
+  }
+
+  unhighlightCells(locations) {
+    for (let location of locations) {
+      document.getElementById(`${location[0]},${location[1]}`).classList.remove("legalMove")
+    }
   }
 
   #initializeBoard() {
@@ -83,6 +95,8 @@ export class Display {
     for (let row = 0; row < 8; row++) {
       for (let column = 0; column < 8; column++) {
         let cell = document.getElementById(row + "," + column);
+        cell.removeEventListener("mouseenter", this.handleHoverEnter)  
+        cell.removeEventListener("mouseleave", this. handleHoverLeave)  
         cell.innerHTML = ""; 
         if (this.board.grid[row][column] != null) {
           let currentPiece = this.board.grid[row][column];
@@ -99,27 +113,8 @@ export class Display {
           
           
           //Sets up Hover Events
-          cell.addEventListener("mouseenter", (event) => {
-            let location = []
-            location[0] = event.currentTarget.id[0]
-            location[1] = event.currentTarget.id[2]
-            let hoveredPiece = this.board.getPiece(location)
-            this.hoveredPieceNameDisplay.innerText = "Name: " + hoveredPiece.type.Name
-            this.hoveredPieceAttackDisplay.innerText = "Attack Type:" + hoveredPiece.type.Attack_Type
-            this.hoveredPieceResistDisplay.innerText = "Resistance: " + hoveredPiece.type.Resistance
-            this.hoveredPieceWeaknessDisplay.innerText = "Weakness: " + hoveredPiece.type.Weakness
-            this.hoveredPieceDescriptionDisplay.innerText = "Description: " + hoveredPiece.type.Description
-          })  
-
-
-
-          cell.addEventListener("mouseleave", () => {
-            this.hoveredPieceNameDisplay.innerText = "Name:"
-            this.hoveredPieceAttackDisplay.innerText = "Attack Type:"
-            this.hoveredPieceResistDisplay.innerText = "Resistance: "
-            this.hoveredPieceWeaknessDisplay.innerText = "Weakness: "
-            this.hoveredPieceDescriptionDisplay.innerText = "Description: "
-          })  
+          cell.addEventListener("mouseenter", this.handleHoverEnter)  
+          cell.addEventListener("mouseleave", this. handleHoverLeave)  
 
           
 
@@ -153,6 +148,26 @@ export class Display {
   updateTurnDisplay(turn) {
     let turnString = `Current Turn: ${turn.name}` 
     this.turnDisplay.innerText = turnString;
+  }
+
+  handleHoverEnter = (event) => {
+    let location = []
+    location[0] = event.currentTarget.id[0]
+    location[1] = event.currentTarget.id[2]
+    let hoveredPiece = this.board.getPiece(location)
+    this.hoveredPieceNameDisplay.innerText = hoveredPiece.type.Name
+    this.hoveredPieceAttackDisplay.innerText = hoveredPiece.type.Attack_Type
+    this.hoveredPieceResistDisplay.innerText = hoveredPiece.type.Resistance
+    this.hoveredPieceWeaknessDisplay.innerText = hoveredPiece.type.Weakness
+    this.hoveredPieceDescriptionDisplay.innerText = hoveredPiece.type.Description
+  }
+
+  handleHoverLeave = (event) => {
+    this.hoveredPieceNameDisplay.innerText = ""
+    this.hoveredPieceAttackDisplay.innerText = ""
+    this.hoveredPieceResistDisplay.innerText = ""
+    this.hoveredPieceWeaknessDisplay.innerText = ""
+    this.hoveredPieceDescriptionDisplay.innerText = ""
   }
 }
 

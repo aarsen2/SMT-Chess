@@ -38,6 +38,11 @@ body {
     background-color: gray;
 }
 
+.legalMove {
+    background-image: linear-gradient(rgb(200, 255, 200),rgb(200,255,200)) !important;
+    background-blend-mode: multiply; 
+}
+
 .boardSquare:active {
     background-color: gray;
 }
@@ -69,3 +74,23 @@ body {
 #turnDisplay {
     text-align: center;
 }
+
+#hoverSubSection {
+    display: flex;
+    height: 100px;
+}
+
+#hoverSubSection > * {
+    width: 25%;
+    text-align: center;
+}
+
+#hoveredPieceDescriptionDisplay {
+    height: 100px;
+    padding: 20px;
+}
+
+hr {
+    width: 75%;
+}
+

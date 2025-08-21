@@ -25,6 +25,14 @@ game.updateTurnDisplay = (turn) => {
     display.updateTurnDisplay(turn);
 }
 
+game.highlightLegalMoves = (legalMoves) => {
+    display.highlightCells(legalMoves);
+}
+
+game.unhighlightLegalMoves = (legalMoves) => {
+    display.unhighlightCells(legalMoves)
+}
+
 game.initialize()
 
 console.log(`Created display ${display}`)

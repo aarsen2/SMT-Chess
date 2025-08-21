@@ -18,3 +18,12 @@ export function equalArrays(array1, array2) {
     //console.log("These are equal")
     return true;
 }
+
+export function containsArray(arrayOfArrays, array2) {
+    for (let subArray of arrayOfArrays) {
+        if (equalArrays(subArray, array2)) {
+            return true;
+        }
+    }
+    return false;
+}

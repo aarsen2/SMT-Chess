@@ -1,6 +1,6 @@
 import {Board} from "./board.js";
 import {Player} from "./player.js";
-import { equalArrays } from "./ultilty.js";
+import { equalArrays, containsArray } from "./ultilty.js";
 
 
 
@@ -13,11 +13,14 @@ export class Game {
         this.player2 = new Player("Ashton", 2);
         this.turn = this.player1;
         
+        
         //create callback methods
         this.highlightCell = null;
         this.unhighlightCell = null;
         this.updateBoard = null;
         this.updateTurnDisplay = null;
+        this.highlightLegalMoves = null;
+        this.unhighlightLegalMoves = null;
         //method calls
         
         
@@ -31,6 +34,7 @@ export class Game {
     //Random Properties
     #selectedCell = [];
     #currentlySelected = false;
+    #legalMoves = [];
     
     initialize() {
         this.updateTurnDisplay(this.turn)
@@ -39,9 +43,6 @@ export class Game {
 
     //method declarations
 
-    movePiece(piece, newLocation) {
-        this.board.placePiece(piece, newLocation)
-    }
 
     initializeBoard() {
         //player 1 backrow
@@ -67,8 +68,8 @@ export class Game {
 
 
         //player 2 front row
-        this.board.createPiece("Lucifer", this.player2, [6,0]);
-        this.board.createPiece("Lucifer", this.player2, [6,1]);
+        this.board.createPiece("Lilim", this.player2, [6,0]);
+        this.board.createPiece("Lilim", this.player2, [6,1]);
         this.board.createPiece("Lucifer", this.player2, [6,2]);
         this.board.createPiece("Lucifer", this.player2, [6,3]);
         this.board.createPiece("Lucifer", this.player2, [6,4]);
@@ -110,50 +111,59 @@ export class Game {
             this.#currentlySelected = true;
             this.#selectedCell = location;
             this.highlightCell(location);
+            this.calculateLegalMoves(location)
+            this.highlightLegalMoves(this.#legalMoves)
         }
 
 
         //Selected the same piece again to de select
         else if (this.#currentlySelected && equalArrays(this.#selectedCell, location)) {
             this.unhighlightCell(location);
+            this.unhighlightLegalMoves(this.#legalMoves)
             this.#currentlySelected = false;
         }
 
         //Selected the an Enemy Piece after selecting your own piece
         else if (this.#currentlySelected && this.board.hasPiece(location) && this.turn != this.board.getPiece(location).player) {
-            console.log("you want to move");
+            console.log("you want to attack");
             console.log(location);
             console.log(this.#selectedCell);
 
+            if (containsArray(this.#legalMoves, location)) {
+                this.unhighlightCell(this.#selectedCell);
+                this.unhighlightLegalMoves(this.#legalMoves)
 
-            this.unhighlightCell(this.#selectedCell);
-            this.#currentlySelected = false;
+                this.#currentlySelected = false;
 
-            // do calculation. if move is neutral do this
+                // do calculation. if move is neutral do this
 
-            let attacker = this.board.getPiece(this.#selectedCell)
-            let defender = this.board.getPiece(location)
+                let attacker = this.board.getPiece(this.#selectedCell)
+                let defender = this.board.getPiece(location)
 
 
-            //Hits Weakness
-            if (attacker.type.Attack_Type == defender.type.Weakness)  {
-                console.log("Weakness Has been Hit")
-                this.board.movePiece(this.#selectedCell, location);
-                this.updateBoard();
-                console.log("You get one more turn")
+                //Hits Weakness
+                if (attacker.type.Attack_Type == defender.type.Weakness)  {
+                    console.log("Weakness Has been Hit")
+                    this.board.movePiece(this.#selectedCell, location);
+                    this.updateBoard();
+                    console.log("You get one more turn")
+                }
+
+                //Hits resistance
+                else if (attacker.type.Attack_Type == defender.type.Resistance) {
+                    console.log("Resistance Has been Hit. You lost your turn.")
+                    this.changeTurn()
+                }
+
+                else {
+                    console.log("you did a neutral attack")
+                    this.board.movePiece(this.#selectedCell, location);
+                    this.updateBoard();
+                    this.changeTurn();
+                }
             }
-
-            //Hits resistance
-            else if (attacker.type.Attack_Type == defender.type.Resistance) {
-                console.log("Resistance Has been Hit. You lost your turn.")
-                this.changeTurn()
-            }
-
             else {
-                console.log("you did a neutral attack")
-                this.board.movePiece(this.#selectedCell, location);
-                this.updateBoard();
-                this.changeTurn();
+                console.log("Invalid attack")
             }
             /*
             //if move hits weakness
@@ -171,13 +181,17 @@ export class Game {
             console.log("you want to move");
             console.log(location)
             console.log(this.#selectedCell)
+            console.log(location)
+            console.log(this.#legalMoves)
+            if (containsArray(this.#legalMoves, location)) {
+                this.unhighlightCell(this.#selectedCell)
+                this.unhighlightLegalMoves(this.#legalMoves)
 
-
-            this.unhighlightCell(this.#selectedCell)
-            this.#currentlySelected = false;
-            this.board.movePiece(this.#selectedCell, location);
-            this.updateBoard()
-            this.changeTurn();
+                this.#currentlySelected = false;
+                this.board.movePiece(this.#selectedCell, location);
+                this.updateBoard()
+                this.changeTurn();
+            }
         }
 
         
@@ -208,5 +222,80 @@ export class Game {
     changeTurn() {
         this.turn = this.turn == this.player1 ? this.player2 : this.player1
         this.updateTurnDisplay(this.turn);
+    }
+
+
+
+
+
+
+    calculateLegalMoves(location) {
+        /// location is an array [row, column]
+        let currentLegalMoves = [];
+        let selectedPiece = this.board.getPiece(location)
+        let pieceType = selectedPiece.type.Tier;
+        let piecePlayer = selectedPiece.player
+        let direction = piecePlayer == this.player1 ? 1 : -1;
+        switch (pieceType) {
+            case 1: {
+                //"**********PAWN************"//
+                
+                // Checks 1 space in front of the pawn
+                let testSpace = [location[0] + direction, location[1]];
+                if(this.board.getPiece(testSpace) == null) {
+                    currentLegalMoves[currentLegalMoves.length] = testSpace
+
+                    //Checks 2 paces in front of the pawn and checks to see if it has moved.
+                    testSpace = [location[0] + (direction * 2 ), location[1]]
+                    if (this.board.getPiece(testSpace) == null && !selectedPiece.hasMoved) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+                //checks to the right diagonal for enemy
+                testSpace = [location[0] + direction, (location[1] + 1)];
+                if(this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer) {
+                    currentLegalMoves[currentLegalMoves.length] = testSpace
+                }
+
+                //checks to the left Diagonal for enemy
+                testSpace = [location[0] + direction, (location[1] - 1)];
+                if(this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer) {
+                    currentLegalMoves[currentLegalMoves.length] = testSpace
+                }
+
+            } break;
+                
+            case 2: {
+
+            } break;
+
+            case 3: {
+
+            } break;
+            
+            case 4: {
+            } break;
+
+            case 5: {
+            } break;
+            
+            case 6: {
+
+            } break;
+
+            default: alert("Something has gone terribly wrong in the switch stament for move legality")
+        }
+        console.log(currentLegalMoves)
+        this.#legalMoves = currentLegalMoves  
+    }
+
+
+
+
+    isLegalMove(selectedCell, location) {
+        let selectedPiece = this.board.getPiece(selectedCell);
+        let pieceType = selectedPiece.type.Tier;
+        let piecePlayer = selectedPiece.player;
     }
 }
