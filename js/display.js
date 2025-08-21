@@ -82,13 +82,11 @@ export class Display {
         if (this.board.grid[row][column] != null) {
           let currentPiece = this.board.grid[row][column]
           let piece = document.createElement("div");
-          console.log(`this is the new inner HTML ${cell.innerHTML}`)
           //styles the piece
           piece.classList.add("piece")
           piece.classList.add("player" + currentPiece.player.id)
           //Adds piece
           cell.appendChild(piece)
-          console.log(`this is the new inner HTML ${cell.innerHTML}`)
 
         }
       }

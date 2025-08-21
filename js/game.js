@@ -20,6 +20,7 @@ export class Game {
         this.updateTurnDisplay = null;
         //method calls
         this.initializeBoard();
+
         //log messages
         
         
@@ -42,8 +43,8 @@ export class Game {
     initializeBoard() {
         for (let row = 0; row < 2; row++) {
             for (let column = 0; column < 8; column++) {
-                this.board.createPiece("Metatron", this.player1, [row,column]);
-                this.board.createPiece("Pawn", this.player2, [7-row,column]);
+                this.board.createPiece("Mandrake", this.player1, [row,column]);
+                this.board.createPiece("Kusi Mitama", this.player2, [7-row,column]);
             }
         }
     }
@@ -73,11 +74,46 @@ export class Game {
             console.log("you want to move");
             console.log(location);
             console.log(this.#selectedCell);
+
+
             this.unhighlightCell(this.#selectedCell);
             this.#currentlySelected = false;
-            this.board.movePiece(this.#selectedCell, location);
+
+            // do calculation. if move is neutral do this
+
+            let attacker = this.board.getPiece(this.#selectedCell)
+            let defender = this.board.getPiece(location)
+
+
+            //Hits Weakness
+            if (attacker.type.Attack_Type == defender.type.Weakness)  {
+                console.log("Weakness Has been Hit")
+                this.board.movePiece(this.#selectedCell, location);
+                this.updateBoard();
+                console.log("You get one more turn")
+            }
+
+            //Hits resistance
+            else if (attacker.type.Attack_Type == defender.type.Resistance) {
+                console.log("Resistance Has been Hit. You lost your turn.")
+                this.changeTurn()
+            }
+
+            else {
+                console.log("you did a neutral attack")
+                this.board.movePiece(this.#selectedCell, location);
+                this.updateBoard();
+                this.changeTurn();
+            }
+            /*
+            //if move hits weakness
+            this.board.movePiece()
             this.updateBoard()
+            // To Be implemented ---  this.showOneMore();
+
+            // if move hits strength
             this.changeTurn();
+            */
         }
         
         //Selected an empty spot after selecting your own piece
@@ -85,6 +121,8 @@ export class Game {
             console.log("you want to move");
             console.log(location)
             console.log(this.#selectedCell)
+
+
             this.unhighlightCell(this.#selectedCell)
             this.#currentlySelected = false;
             this.board.movePiece(this.#selectedCell, location);
