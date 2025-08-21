@@ -80,11 +80,17 @@ export class Display {
         let cell = document.getElementById(row + "," + column);
         cell.innerHTML = ""; 
         if (this.board.grid[row][column] != null) {
-          let currentPiece = this.board.grid[row][column]
+          let currentPiece = this.board.grid[row][column];
+          let pieceName = currentPiece.type.Name;
+          let pieceTier = currentPiece.type.Tier;
+          let pieceType = currentPiece.type.Tier;
+          let pieceIcon = `./img/SMT Demons/Rank ${pieceTier}/${pieceName}.png`
+          console.log(pieceIcon)
           let piece = document.createElement("div");
           //styles the piece
           piece.classList.add("piece")
           piece.classList.add("player" + currentPiece.player.id)
+          piece.style.backgroundImage = `url("${pieceIcon}")`
           //Adds piece
           cell.appendChild(piece)
 

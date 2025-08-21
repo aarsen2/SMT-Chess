@@ -43,8 +43,8 @@ export class Game {
     initializeBoard() {
         for (let row = 0; row < 2; row++) {
             for (let column = 0; column < 8; column++) {
-                this.board.createPiece("Mandrake", this.player1, [row,column]);
-                this.board.createPiece("Kusi Mitama", this.player2, [7-row,column]);
+                this.board.createPiece("Lucifer", this.player1, [row,column]);
+                this.board.createPiece("Succubus", this.player2, [7-row,column]);
             }
         }
     }
