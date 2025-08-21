@@ -12,27 +12,30 @@ export class Game {
         this.player1 = new Player("Aaron", 1);
         this.player2 = new Player("Ashton", 2);
         this.turn = this.player1;
-
+        
         //create callback methods
         this.highlightCell = null;
         this.unhighlightCell = null;
-        this.drawBoard = null;
+        this.updateBoard = null;
         this.updateTurnDisplay = null;
         //method calls
-        this.initializeBoard();
-
+        
+        
         //log messages
         
         
-        console.log("Creating Board")
-        console.log("Creating Player 1")
-        console.log("Creating Plaer 2")
+        //console.log("Creating Board")
+        //console.log("Creating Player 1")
+        //console.log("Creating Plaer 2")
     }
     //Random Properties
     #selectedCell = [];
     #currentlySelected = false;
-
-
+    
+    initialize() {
+        this.updateTurnDisplay(this.turn)
+        this.initializeBoard();
+    }
 
     //method declarations
 
@@ -41,12 +44,59 @@ export class Game {
     }
 
     initializeBoard() {
+        //player 1 backrow
+        this.board.createPiece("Slime", this.player1, [0,0]);
+        this.board.createPiece("Saki Mitama", this.player1, [0,1]);
+        this.board.createPiece("Pyro Jack", this.player1, [0,2]);
+        this.board.createPiece("Preta", this.player1, [0,3]);
+        this.board.createPiece("Pixie", this.player1, [0,4]);
+        this.board.createPiece("Nigi Mitama", this.player1, [0,5]);
+        this.board.createPiece("Mokoi", this.player1, [0,6]);
+        this.board.createPiece("Mandrake", this.player1, [0,7]);
+        //player 1 front row
+        this.board.createPiece("Lilim", this.player1, [1,0]);
+        this.board.createPiece("Kusi Mitama", this.player1, [1,1]);
+        this.board.createPiece("Jack Frost", this.player1, [1,2]);
+        this.board.createPiece("Hua Po", this.player1, [1,3]);
+        this.board.createPiece("Black Ooze", this.player1, [1,4]);
+        this.board.createPiece("Ara Mitama", this.player1, [1,5]);
+        this.board.createPiece("Angel", this.player1, [1,6]);
+        this.board.createPiece("Ame-no-Uzume", this.player1, [1,7]);
+
+
+
+
+        //player 2 front row
+        this.board.createPiece("Lucifer", this.player2, [6,0]);
+        this.board.createPiece("Lucifer", this.player2, [6,1]);
+        this.board.createPiece("Lucifer", this.player2, [6,2]);
+        this.board.createPiece("Lucifer", this.player2, [6,3]);
+        this.board.createPiece("Lucifer", this.player2, [6,4]);
+        this.board.createPiece("Lucifer", this.player2, [6,5]);
+        this.board.createPiece("Lucifer", this.player2, [6,6]);
+        this.board.createPiece("Lucifer", this.player2, [6,7]);
+        //player 2 backrow
+        this.board.createPiece("Lucifer", this.player2, [7,0]);
+        this.board.createPiece("Lucifer", this.player2, [7,1]);
+        this.board.createPiece("Lucifer", this.player2, [7,2]);
+        this.board.createPiece("Lucifer", this.player2, [7,3]);
+        this.board.createPiece("Lucifer", this.player2, [7,4]);
+        this.board.createPiece("Lucifer", this.player2, [7,5]);
+        this.board.createPiece("Lucifer", this.player2, [7,6]);
+        this.board.createPiece("Lucifer", this.player2, [7,7]);
+
+
+
+        /*////Old game creation logic. Keeping as a fallback
         for (let row = 0; row < 2; row++) {
             for (let column = 0; column < 8; column++) {
                 this.board.createPiece("Lucifer", this.player1, [row,column]);
                 this.board.createPiece("Succubus", this.player2, [7-row,column]);
             }
         }
+            */
+
+        this.updateBoard();
     }
 
 
@@ -154,6 +204,7 @@ export class Game {
 
 
     }
+
     changeTurn() {
         this.turn = this.turn == this.player1 ? this.player2 : this.player1
         this.updateTurnDisplay(this.turn);

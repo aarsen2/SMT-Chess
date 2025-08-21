@@ -12,7 +12,7 @@ export class Board {
         let piece = new Piece(type, player)
         this.grid[location[0]][location[1]] = piece;
         
-        console.log(`Created a new ${piece.type.Name} at ${location[0]} , ${location[1]}`)
+        //console.log(`Created a new ${piece.getName()} at ${location[0]} , ${location[1]}`)
     }
 
     getPiece(location) {

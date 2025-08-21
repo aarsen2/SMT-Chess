@@ -52,7 +52,7 @@ body {
 .piece {
     width: 80%;
     height: 80%;
-    background-size: cover;
+    background-size: 100% 100%;
 
 }
 
@@ -66,3 +66,6 @@ body {
     background-blend-mode: multiply;
 }
 
+#turnDisplay {
+    text-align: center;
+}

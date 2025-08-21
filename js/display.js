@@ -5,6 +5,11 @@ export class Display {
     this.color2 = "white"
     this.chessBoard = document.getElementById(element)
     this.turnDisplay = document.getElementById("turnDisplay")
+    this.hoveredPieceNameDisplay = document.getElementById("hoveredPieceNameDisplay")
+    this.hoveredPieceAttackDisplay = document.getElementById("hoveredPieceAttackDisplay")
+    this.hoveredPieceResistDisplay = document.getElementById("hoveredPieceResistDisplay")
+    this.hoveredPieceWeaknessDisplay = document.getElementById("hoveredPieceWeaknessDisplay")
+    this.hoveredPieceDescriptionDisplay = document.getElementById("hoveredPieceDescriptionDisplay")
     this.boardSize = 700;
     this.onCellClick = null;
     this.board = board
@@ -85,12 +90,58 @@ export class Display {
           let pieceTier = currentPiece.type.Tier;
           let pieceType = currentPiece.type.Tier;
           let pieceIcon = `./img/SMT Demons/Rank ${pieceTier}/${pieceName}.png`
-          console.log(pieceIcon)
           let piece = document.createElement("div");
+
+
           //styles the piece
           piece.classList.add("piece")
           piece.classList.add("player" + currentPiece.player.id)
-          piece.style.backgroundImage = `url("${pieceIcon}")`
+          
+          
+          //Sets up Hover Events
+          cell.addEventListener("mouseenter", (event) => {
+            let location = []
+            location[0] = event.currentTarget.id[0]
+            location[1] = event.currentTarget.id[2]
+            let hoveredPiece = this.board.getPiece(location)
+            this.hoveredPieceNameDisplay.innerText = "Name: " + hoveredPiece.type.Name
+            this.hoveredPieceAttackDisplay.innerText = "Attack Type:" + hoveredPiece.type.Attack_Type
+            this.hoveredPieceResistDisplay.innerText = "Resistance: " + hoveredPiece.type.Resistance
+            this.hoveredPieceWeaknessDisplay.innerText = "Weakness: " + hoveredPiece.type.Weakness
+            this.hoveredPieceDescriptionDisplay.innerText = "Description: " + hoveredPiece.type.Description
+          })  
+
+
+
+          cell.addEventListener("mouseleave", () => {
+            this.hoveredPieceNameDisplay.innerText = "Name:"
+            this.hoveredPieceAttackDisplay.innerText = "Attack Type:"
+            this.hoveredPieceResistDisplay.innerText = "Resistance: "
+            this.hoveredPieceWeaknessDisplay.innerText = "Weakness: "
+            this.hoveredPieceDescriptionDisplay.innerText = "Description: "
+          })  
+
+          
+
+          
+
+
+
+
+
+          //preLoads the image to make sure that it works before setting the image. If it doesnt work then you get the default pawn image.
+          const img = new Image();
+            img.onload = () => {
+              // file exists, safe to use
+              piece.style.backgroundImage = `url("${pieceIcon}")`;
+            };
+            img.onerror = () => {
+              // file not found, use fallback
+              piece.style.backgroundImage = `url("./img/SMT Demons/Rank 1/Pawn.png")`;
+            };
+            img.src = pieceIcon;
+
+          
           //Adds piece
           cell.appendChild(piece)
 
@@ -103,8 +154,8 @@ export class Display {
     let turnString = `Current Turn: ${turn.name}` 
     this.turnDisplay.innerText = turnString;
   }
-
 }
+
 
 
 

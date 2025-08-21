@@ -25,6 +25,8 @@ game.updateTurnDisplay = (turn) => {
     display.updateTurnDisplay(turn);
 }
 
+game.initialize()
+
 console.log(`Created display ${display}`)
 console.log(`Created game ${game}`)
 
