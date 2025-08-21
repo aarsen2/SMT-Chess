@@ -12,14 +12,17 @@ export class Game {
         this.player1 = new Player("Aaron", 1);
         this.player2 = new Player("Ashton", 2);
         this.turn = this.player1;
+
+        //create callback methods
         this.highlightCell = null;
         this.unhighlightCell = null;
+        this.drawBoard = null;
+        this.updateTurnDisplay = null;
         //method calls
         this.initializeBoard();
-        
-        
-        
         //log messages
+        
+        
         console.log("Creating Board")
         console.log("Creating Player 1")
         console.log("Creating Plaer 2")
@@ -67,12 +70,26 @@ export class Game {
 
         //Selected the an Enemy Piece after selecting your own piece
         else if (this.#currentlySelected && this.board.hasPiece(location) && this.turn != this.board.getPiece(location).player) {
-            console.log("clicked enemy");
+            console.log("you want to move");
+            console.log(location);
+            console.log(this.#selectedCell);
+            this.unhighlightCell(this.#selectedCell);
+            this.#currentlySelected = false;
+            this.board.movePiece(this.#selectedCell, location);
+            this.updateBoard()
+            this.changeTurn();
         }
-
+        
         //Selected an empty spot after selecting your own piece
         else if (this.#currentlySelected && !this.board.hasPiece(location)) {
             console.log("you want to move");
+            console.log(location)
+            console.log(this.#selectedCell)
+            this.unhighlightCell(this.#selectedCell)
+            this.#currentlySelected = false;
+            this.board.movePiece(this.#selectedCell, location);
+            this.updateBoard()
+            this.changeTurn();
         }
 
         
@@ -98,5 +115,9 @@ export class Game {
         }
 
 
+    }
+    changeTurn() {
+        this.turn = this.turn == this.player1 ? this.player2 : this.player1
+        this.updateTurnDisplay(this.turn);
     }
 }

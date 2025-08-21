@@ -7,22 +7,25 @@ let game = new Game();
 let display = new Display("chessBoard", game.board)
 
 display.onCellClick = (location) => {
-    game.selectCell(location)
+    game.selectCell(location);
 }
 
 game.highlightCell = (location) => {
-    display.highlightCell(location)
+    display.highlightCell(location);
 }
 game.unhighlightCell = (location) => {
-    display.unhighlightCell(location)
+    display.unhighlightCell(location);
+}
+
+game.updateBoard = () => {
+    display.drawPieces();
+}
+
+game.updateTurnDisplay = (turn) => {
+    display.updateTurnDisplay(turn);
 }
 
 console.log(`Created display ${display}`)
 console.log(`Created game ${game}`)
 
-initializeGame();
 
-
-function initializeGame() {
-    //display.drawBoard(game.board)
-}

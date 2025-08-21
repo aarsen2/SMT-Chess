@@ -557,6 +557,51 @@ const demonString = `[
     "Weakness": "All",
     "Skill": "-",
     "Description": "-"
+  },
+  {
+    "Name": "Rook",
+    "Tier": 1,
+    "Attack Type": "Almighty",
+    "Resistance": "-",
+    "Weakness": "All",
+    "Skill": "-",
+    "Description": "-"
+  },
+  {
+    "Name": "Knight",
+    "Tier": 1,
+    "Attack Type": "Almighty",
+    "Resistance": "-",
+    "Weakness": "All",
+    "Skill": "-",
+    "Description": "-"
+  },
+  {
+    "Name": "Bishop",
+    "Tier": 1,
+    "Attack Type": "Almighty",
+    "Resistance": "-",
+    "Weakness": "All",
+    "Skill": "-",
+    "Description": "-"
+  },
+  {
+    "Name": "Queen",
+    "Tier": 1,
+    "Attack Type": "Almighty",
+    "Resistance": "-",
+    "Weakness": "All",
+    "Skill": "-",
+    "Description": "-"
+  },
+  {
+    "Name": "King",
+    "Tier": 1,
+    "Attack Type": "Almighty",
+    "Resistance": "-",
+    "Weakness": "All",
+    "Skill": "-",
+    "Description": "-"
   }
 ]
 `

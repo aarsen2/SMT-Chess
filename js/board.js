@@ -27,4 +27,14 @@ export class Board {
             return false;
         }
     }
+
+    movePiece(oldLocation, newLocation) {
+        let piece = this.grid[oldLocation[0]][oldLocation[1]];
+        this.grid[newLocation[0]][newLocation[1]] = piece;
+        this.grid[oldLocation[0]][oldLocation[1]] = null;
+
+        console.log("movied Piece to new spot ");
+        console.log(oldLocation);
+        console.log(newLocation);
+    }
 }

@@ -4,19 +4,17 @@ export class Display {
     this.color1 = "lightgray"
     this.color2 = "white"
     this.chessBoard = document.getElementById(element)
+    this.turnDisplay = document.getElementById("turnDisplay")
     this.boardSize = 700;
     this.onCellClick = null;
+    this.board = board
 
     //method calls
     this.#initializeBoard();
     this.#drawSquares();
-    this.drawBoard(board);
+    this.drawPieces();
   }
 
-  drawBoard(board) {
-    this.#drawPieces(board);
-
-  }
 
   highlightCell(location) {
     console.log("Highlighting cell at " + location)
@@ -40,7 +38,9 @@ export class Display {
     this.chessBoard.style.gridTemplateRows = "repeat(8, 1fr)";
   }
 
-  #drawSquares() {
+
+  
+  #drawSquares() { // This creates the board visually in HTML
     //this.chessBoard.innerHTML = ""
     for (let row = 0; row < 8; row++) {
       
@@ -73,32 +73,33 @@ export class Display {
 
   //This looks through the board grid and then finds a corrosponding spot for each piece it finds then displays them.
 
-  #drawPieces(board) {
-    console.log(board.grid[0][0])
+  drawPieces() {
+    console.log(this.board.grid[0][0])
     for (let row = 0; row < 8; row++) {
       for (let column = 0; column < 8; column++) {
-        if (board.grid[row][column] != null) {
-          let currentPiece = board.grid[row][column]
+        let cell = document.getElementById(row + "," + column);
+        cell.innerHTML = ""; 
+        if (this.board.grid[row][column] != null) {
+          let currentPiece = this.board.grid[row][column]
           let piece = document.createElement("div");
-          let cell = document.getElementById(row + "," + column);
-      
+          console.log(`this is the new inner HTML ${cell.innerHTML}`)
           //styles the piece
           piece.classList.add("piece")
           piece.classList.add("player" + currentPiece.player.id)
           //Adds piece
           cell.appendChild(piece)
+          console.log(`this is the new inner HTML ${cell.innerHTML}`)
+
         }
       }
     }
   }
-
-  updateSelectedPiece() {
-    document.getElementById
+  
+  updateTurnDisplay(turn) {
+    let turnString = `Current Turn: ${turn.name}` 
+    this.turnDisplay.innerText = turnString;
   }
 
-  updateHoverPiece() {
-
-  }
 }
 
 
