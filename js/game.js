@@ -46,14 +46,14 @@ export class Game {
 
     initializeBoard() {
         //player 1 backrow
-        this.board.createPiece("Slime", this.player1, [0,0]);
-        this.board.createPiece("Saki Mitama", this.player1, [0,1]);
-        this.board.createPiece("Pyro Jack", this.player1, [0,2]);
-        this.board.createPiece("Preta", this.player1, [0,3]);
-        this.board.createPiece("Pixie", this.player1, [0,4]);
-        this.board.createPiece("Nigi Mitama", this.player1, [0,5]);
-        this.board.createPiece("Mokoi", this.player1, [0,6]);
-        this.board.createPiece("Mandrake", this.player1, [0,7]);
+        this.board.createPiece("White Rider", this.player1, [0,0]);
+        this.board.createPiece("Rakshasa", this.player1, [0,1]);
+        this.board.createPiece("Matador", this.player1, [0,2]);
+        this.board.createPiece("Baal", this.player1, [0,3]);
+        this.board.createPiece("Demonica (SJ)", this.player1, [0,4]);
+        this.board.createPiece("Succubus", this.player1, [0,5]);
+        this.board.createPiece("Rangda", this.player1, [0,6]);
+        this.board.createPiece("Principality", this.player1, [0,7]);
         //player 1 front row
         this.board.createPiece("Lilim", this.player1, [1,0]);
         this.board.createPiece("Kusi Mitama", this.player1, [1,1]);
@@ -68,23 +68,23 @@ export class Game {
 
 
         //player 2 front row
-        this.board.createPiece("Lilim", this.player2, [6,0]);
-        this.board.createPiece("Lilim", this.player2, [6,1]);
-        this.board.createPiece("Lucifer", this.player2, [6,2]);
-        this.board.createPiece("Lucifer", this.player2, [6,3]);
-        this.board.createPiece("Lucifer", this.player2, [6,4]);
-        this.board.createPiece("Lucifer", this.player2, [6,5]);
-        this.board.createPiece("Lucifer", this.player2, [6,6]);
-        this.board.createPiece("Lucifer", this.player2, [6,7]);
+        this.board.createPiece("Slime", this.player2, [6,0]);
+        this.board.createPiece("Saki Mitama", this.player2, [6,1]);
+        this.board.createPiece("Pyro Jack", this.player2, [6,2]);
+        this.board.createPiece("Preta", this.player2, [6,3]);
+        this.board.createPiece("Pixie", this.player2, [6,4]);
+        this.board.createPiece("Nigi Mitama", this.player2, [6,5]);
+        this.board.createPiece("Mokoi", this.player2, [6,6]);
+        this.board.createPiece("Mandrake", this.player2, [6,7]);
         //player 2 backrow
-        this.board.createPiece("Lucifer", this.player2, [7,0]);
-        this.board.createPiece("Lucifer", this.player2, [7,1]);
-        this.board.createPiece("Lucifer", this.player2, [7,2]);
-        this.board.createPiece("Lucifer", this.player2, [7,3]);
-        this.board.createPiece("Lucifer", this.player2, [7,4]);
-        this.board.createPiece("Lucifer", this.player2, [7,5]);
-        this.board.createPiece("Lucifer", this.player2, [7,6]);
-        this.board.createPiece("Lucifer", this.player2, [7,7]);
+        this.board.createPiece("Cu Chulainn", this.player2, [7,0]);
+        this.board.createPiece("Mother Harlot", this.player2, [7,1]);
+        this.board.createPiece("Yaksini", this.player2, [7,2]);
+        this.board.createPiece("Loki", this.player2, [7,3]);
+        this.board.createPiece("Demi-Fiend", this.player2, [7,4]);
+        this.board.createPiece("Black Frost", this.player2, [7,5]);
+        this.board.createPiece("Mothman", this.player2, [7,6]);
+        this.board.createPiece("Trumpeter", this.player2, [7,7]);
 
 
 

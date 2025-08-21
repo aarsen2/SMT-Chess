@@ -11,6 +11,7 @@ div#chessboard > div:hover {
 
 #gameContainer {
     border: 1px solid black;
+    width: 700px;
 }
 
 body {
@@ -87,7 +88,9 @@ body {
 
 #hoveredPieceDescriptionDisplay {
     height: 100px;
+    width: 90%;
     padding: 20px;
+    overflow-wrap: break-word;
 }
 
 hr {
