@@ -10,6 +10,7 @@ export class Piece {
         //player is a player object
         this.player = player;
         this.hasMoved = false;
+        this.isBishop = false;
     }
 
     getName() {

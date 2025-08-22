@@ -23,9 +23,9 @@ export class movementCalculations {
         switch (pieceType) {
             case 1: { currentLegalMoves = this.checkPawn(location) } break;
 
-            case 2: { currentLegalMoves = this.checkKnight(location) } break;
+            //case 2: { currentLegalMoves = this.checkKnight(location) } break;
             // when i implimentBishop
-            //case 2: { currentLegalMoves = selectedPiece.isBishop ? this.checkBishop(location) : this.checkKnight(location)} break;
+            case 2: { currentLegalMoves = selectedPiece.isBishop ? this.checkBishop(location) : this.checkKnight(location)} break;
 
             case 3: { currentLegalMoves = this.checkRook(location) } break;
 

@@ -50,9 +50,11 @@ export class Game {
         this.board.createPiece("White Rider", this.player1, [0,0]);
         this.board.createPiece("Rakshasa", this.player1, [0,1]);
         this.board.createPiece("Matador", this.player1, [0,2]);
+        this.board.getPiece([0,2]).isBishop = true;
         this.board.createPiece("Baal", this.player1, [0,3]);
         this.board.createPiece("Demonica (SJ)", this.player1, [0,4]);
         this.board.createPiece("Succubus", this.player1, [0,5]);
+        this.board.getPiece([0,5]).isBishop = true;
         this.board.createPiece("Decarabia", this.player1, [0,6]);
         this.board.createPiece("Principality", this.player1, [0,7]);
         //player 1 front row
@@ -81,9 +83,11 @@ export class Game {
         this.board.createPiece("Cu Chulainn", this.player2, [7,0]);
         this.board.createPiece("Mother Harlot", this.player2, [7,1]);
         this.board.createPiece("Yaksini", this.player2, [7,2]);
+        this.board.getPiece([7,2]).isBishop = true;
         this.board.createPiece("Loki", this.player2, [7,3]);
         this.board.createPiece("Demi-Fiend", this.player2, [7,4]);
         this.board.createPiece("Black Frost", this.player2, [7,5]);
+        this.board.getPiece([7,5]).isBishop = true;
         this.board.createPiece("Mothman", this.player2, [7,6]);
         this.board.createPiece("Trumpeter", this.player2, [7,7]);
 
