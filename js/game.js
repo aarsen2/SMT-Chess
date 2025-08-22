@@ -357,6 +357,82 @@ export class Game {
 
             case 3: {
                 //**********ROOK**********//
+                let endUp = false;
+                let endDown = false;
+                let endRight = false;
+                let endLeft = false;
+
+                for (let i = 1; i < 9; i++) {
+
+
+
+                    // checks up
+                    if (!endUp) {
+                        testSpace = [location[0] - i, location[1]];
+                        if (this.onBoard(testSpace)) {
+                            if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                                currentLegalMoves[currentLegalMoves.length] = testSpace;                                    
+                            }
+
+                            //ends this direction if a piece isfound
+                            if(this.board.getPiece(testSpace) != null) {
+                                endUp = true;
+                            }
+                        }
+                    }  
+
+                    //checks down
+                    if (!endDown) {
+                        testSpace = [location[0] + i, location[1]];
+                        if (this.onBoard(testSpace)) {
+                            if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                                currentLegalMoves[currentLegalMoves.length] = testSpace;                                    
+                            }
+
+                            //ends this direction if a piece isfound
+                            if(this.board.getPiece(testSpace) != null) {
+                                endDown = true;
+                            }
+                        }
+                    }
+
+
+                    //checks right
+                    if (!endRight) {
+                        testSpace = [location[0], location[1] + i];
+                        if (this.onBoard(testSpace)) {
+                            if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                                currentLegalMoves[currentLegalMoves.length] = testSpace;                                    
+                            }
+
+                            //ends this direction if a piece isfound
+                            if(this.board.getPiece(testSpace) != null) {
+                                endRight = true;
+                            }
+                        }
+                    }
+
+
+                    //checks left
+                    if (!endLeft) {
+                        testSpace = [location[0], location[1] - i];
+                        if (this.onBoard(testSpace)) {
+                            if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                                currentLegalMoves[currentLegalMoves.length] = testSpace;                                    
+                            }
+
+                            //ends this direction if a piece isfound
+                            if(this.board.getPiece(testSpace) != null) {
+                                endLeft = true;
+                            }
+                        }
+                    }
+
+                    
+
+                }
+
+
             } break;
             
             case 4: {
