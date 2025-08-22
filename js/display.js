@@ -102,7 +102,6 @@ export class Display {
           let currentPiece = this.board.grid[row][column];
           let pieceName = currentPiece.type.Name;
           let pieceTier = currentPiece.type.Tier;
-          let pieceType = currentPiece.type.Tier;
           let pieceIcon = `./img/SMT Demons/Rank ${pieceTier}/${pieceName}.png`
           let piece = document.createElement("div");
 

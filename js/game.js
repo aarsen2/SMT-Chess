@@ -276,7 +276,83 @@ export class Game {
             } break;
                 
             case 2: {
-                //**********KNIGHT**********// //**********BISHOP**********//
+                //**********KNIGHT**********// 
+                
+
+                //top right
+                testSpace = [location[0] - 2, location[1] + 1];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+                //right top
+                testSpace = [location[0] - 1, location[1] + 2];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+                //right bottom
+                testSpace = [location[0] + 1, location[1] + 2];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+                //bottom right
+                testSpace = [location[0] + 2, location[1] + 1];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+                //bottom left
+                testSpace = [location[0] + 2, location[1] - 1];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+                //left bottom
+                testSpace = [location[0] + 1, location[1] - 2];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+                //left top
+                testSpace = [location[0] - 1, location[1] - 2];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+
+                //top left
+                testSpace = [location[0] - 2, location[1] - 1];
+                if (this.onBoard(testSpace)) {
+                    if(this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                //**********BISHOP**********//
+
             } break;
 
             case 3: {
