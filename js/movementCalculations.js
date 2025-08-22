@@ -20,134 +20,12 @@ export class movementCalculations {
         let currentLegalMoves = [];
         let selectedPiece = this.board.getPiece(location)
         let pieceType = selectedPiece.type.Tier;
-        let piecePlayer = selectedPiece.player
-        let direction = piecePlayer == this.player1 ? 1 : -1;
-        let testSpace = [];
         switch (pieceType) {
-            case 1: {
-                //"**********PAWN************"//
-                if (this.debugging) {
-                    console.log("Calculating legal moves for Pawn")
-                }
+            case 1: { currentLegalMoves = this.checkPawn(location) } break;
 
-
-                // Checks 1 space in front of the pawn
-                testSpace = [location[0] + direction, location[1]];
-                if (this.onBoard(testSpace)) {
-                    if (this.board.getPiece(testSpace) == null) {
-                        currentLegalMoves[currentLegalMoves.length] = testSpace
-
-                        //Checks 2 paces in front of the pawn and checks to see if it has moved.
-                        testSpace = [location[0] + (direction * 2), location[1]]
-                        if (this.onBoard(testSpace)) {
-                            if (this.board.getPiece(testSpace) == null && !selectedPiece.hasMoved) {
-                                currentLegalMoves[currentLegalMoves.length] = testSpace
-                            }
-                        }
-                    }
-                }
-
-                //checks to the right diagonal for enemy
-                testSpace = [location[0] + direction, (location[1] + 1)];
-                if (this.onBoard(testSpace)) {
-                    if (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer) {
-                        currentLegalMoves[currentLegalMoves.length] = testSpace
-                    }
-                }
-
-                //checks to the left Diagonal for enemy
-                testSpace = [location[0] + direction, (location[1] - 1)];
-                if (this.onBoard(testSpace)) {
-                    if (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer) {
-                        currentLegalMoves[currentLegalMoves.length] = testSpace
-                    }
-                }
-
-                if (this.debugging) {
-                    console.log(currentLegalMoves)
-                }
-
-            } break;
-
-            case 2: {
-                // **********KNIGHT********** // 
-
-
-                //top right
-                testSpace = [location[0] - 2, location[1] + 1];
-                if (this.onBoard(testSpace)) {
-                    if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
-                        currentLegalMoves[currentLegalMoves.length] = testSpace
-                    }
-                }
-
-                //right top
-                testSpace = [location[0] - 1, location[1] + 2];
-                if (this.onBoard(testSpace)) {
-                    if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
-                        currentLegalMoves[currentLegalMoves.length] = testSpace
-                    }
-                }
-
-                //right bottom
-                testSpace = [location[0] + 1, location[1] + 2];
-                if (this.onBoard(testSpace)) {
-                    if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
-                        currentLegalMoves[currentLegalMoves.length] = testSpace
-                    }
-                }
-
-                //bottom right
-                testSpace = [location[0] + 2, location[1] + 1];
-                if (this.onBoard(testSpace)) {
-                    if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
-                        currentLegalMoves[currentLegalMoves.length] = testSpace
-                    }
-                }
-
-                //bottom left
-                testSpace = [location[0] + 2, location[1] - 1];
-                if (this.onBoard(testSpace)) {
-                    if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
-                        currentLegalMoves[currentLegalMoves.length] = testSpace
-                    }
-                }
-
-                //left bottom
-                testSpace = [location[0] + 1, location[1] - 2];
-                if (this.onBoard(testSpace)) {
-                    if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
-                        currentLegalMoves[currentLegalMoves.length] = testSpace
-                    }
-                }
-
-                //left top
-                testSpace = [location[0] - 1, location[1] - 2];
-                if (this.onBoard(testSpace)) {
-                    if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
-                        currentLegalMoves[currentLegalMoves.length] = testSpace
-                    }
-                }
-
-                //top left
-                testSpace = [location[0] - 2, location[1] - 1];
-                if (this.onBoard(testSpace)) {
-                    if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
-                        currentLegalMoves[currentLegalMoves.length] = testSpace
-                    }
-                }
-
-
-
-
-
-
-
-
-
-                // **********BISHOP********** //
-
-            } break;
+            case 2: { currentLegalMoves = this.checkKnight(location) } break;
+            // when i implimentBishop
+            //case 2: { currentLegalMoves = selectedPiece.isBishop ? this.checkBishop(location) : this.checkKnight(location)} break;
 
             case 3: { currentLegalMoves = this.checkRook(location) } break;
 
@@ -167,7 +45,55 @@ export class movementCalculations {
 
 
     checkPawn(location) {
+        let currentLegalMoves = [];
+        let selectedPiece = this.board.getPiece(location)
+        let piecePlayer = selectedPiece.player
+        let direction = piecePlayer == this.player1 ? 1 : -1;
+        let testSpace = [];
 
+        if (this.debugging) {
+            console.log("Calculating legal moves for Pawn")
+        }
+
+
+        // Checks 1 space in front of the pawn
+        testSpace = [location[0] + direction, location[1]];
+        if (this.onBoard(testSpace)) {
+            if (this.board.getPiece(testSpace) == null) {
+                currentLegalMoves[currentLegalMoves.length] = testSpace
+
+                //Checks 2 paces in front of the pawn and checks to see if it has moved.
+                testSpace = [location[0] + (direction * 2), location[1]]
+                if (this.onBoard(testSpace)) {
+                    if (this.board.getPiece(testSpace) == null && !selectedPiece.hasMoved) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+            }
+        }
+
+        //checks to the right diagonal for enemy
+        testSpace = [location[0] + direction, (location[1] + 1)];
+        if (this.onBoard(testSpace)) {
+            if (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer) {
+                currentLegalMoves[currentLegalMoves.length] = testSpace
+            }
+        }
+
+        //checks to the left Diagonal for enemy
+        testSpace = [location[0] + direction, (location[1] - 1)];
+        if (this.onBoard(testSpace)) {
+            if (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer) {
+                currentLegalMoves[currentLegalMoves.length] = testSpace
+            }
+        }
+
+        if (this.debugging) {
+            console.log(currentLegalMoves)
+        }
+
+
+        return currentLegalMoves
     }
 
     checkBishop(location) {
@@ -199,7 +125,7 @@ export class movementCalculations {
                 console.log(`right ${endRight}`)
                 console.log(`left ${endLeft}`)
             }
-            
+
             // checks up right
             if (!endUp) {
                 testSpace = [location[0] - i, location[1] + i];
@@ -266,13 +192,78 @@ export class movementCalculations {
     }
 
     checkKnight(location) {
+        let currentLegalMoves = [];
+        let selectedPiece = this.board.getPiece(location)
+        let piecePlayer = selectedPiece.player
+        let testSpace;
 
+        testSpace = [location[0] - 2, location[1] + 1];
+        if (this.onBoard(testSpace)) {
+            if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                currentLegalMoves[currentLegalMoves.length] = testSpace
+            }
+        }
+
+        //right top
+        testSpace = [location[0] - 1, location[1] + 2];
+        if (this.onBoard(testSpace)) {
+            if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                currentLegalMoves[currentLegalMoves.length] = testSpace
+            }
+        }
+
+        //right bottom
+        testSpace = [location[0] + 1, location[1] + 2];
+        if (this.onBoard(testSpace)) {
+            if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                currentLegalMoves[currentLegalMoves.length] = testSpace
+            }
+        }
+
+        //bottom right
+        testSpace = [location[0] + 2, location[1] + 1];
+        if (this.onBoard(testSpace)) {
+            if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                currentLegalMoves[currentLegalMoves.length] = testSpace
+            }
+        }
+
+        //bottom left
+        testSpace = [location[0] + 2, location[1] - 1];
+        if (this.onBoard(testSpace)) {
+            if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                currentLegalMoves[currentLegalMoves.length] = testSpace
+            }
+        }
+
+        //left bottom
+        testSpace = [location[0] + 1, location[1] - 2];
+        if (this.onBoard(testSpace)) {
+            if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                currentLegalMoves[currentLegalMoves.length] = testSpace
+            }
+        }
+
+        //left top
+        testSpace = [location[0] - 1, location[1] - 2];
+        if (this.onBoard(testSpace)) {
+            if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                currentLegalMoves[currentLegalMoves.length] = testSpace
+            }
+        }
+
+        //top left
+        testSpace = [location[0] - 2, location[1] - 1];
+        if (this.onBoard(testSpace)) {
+            if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                currentLegalMoves[currentLegalMoves.length] = testSpace
+            }
+        }
+
+        return currentLegalMoves
     }
 
     checkRook(location) {
-
-        // **********ROOK********** //
-
         let currentLegalMoves = [];
         let selectedPiece = this.board.getPiece(location)
         let piecePlayer = selectedPiece.player
@@ -371,19 +362,19 @@ export class movementCalculations {
         let rookOptions = this.checkRook(location);
         let bishopOptions = this.checkBishop(location);
 
-        for (let i = 0; i < rookOptions.length ; i++) {
+        for (let i = 0; i < rookOptions.length; i++) {
             bishopOptions[bishopOptions.length] = rookOptions[i]
         }
 
         return bishopOptions;
     }
 
-    checkKing(location) { //Calculates the legal moves for the king.
-        // **********KING********** //
+    checkKing(location) {
         let currentLegalMoves = [];
         let selectedPiece = this.board.getPiece(location)
         let piecePlayer = selectedPiece.player
         let testSpace;
+
         //top middle
         testSpace = [location[0] - 1, location[1] + 0];
         if (this.onBoard(testSpace)) {
