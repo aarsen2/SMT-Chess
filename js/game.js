@@ -2,7 +2,7 @@ import { Board } from "./board.js";
 import { Player } from "./player.js";
 import { equalArrays, containsArray } from "./ultilty.js";
 import { MovementCalculations } from "./movementCalculations.js";
-import { enPassantTracker } from "../enPassantTracker.js";
+import { enPassantTracker } from "./enPassantTracker.js";
 
 
 export class Game {
@@ -12,15 +12,18 @@ export class Game {
         this.board = new Board();
         this.player1 = new Player("Aaron", 1);
         this.player2 = new Player("Ashton", 2);
+        this.player1King = "Demonica (SJ)"
+        this.player2King = "Demi-Fiend"
+        this.player1Music = new Audio(`../music/${this.player1King}/battleMusic.mp3`)
+        this.player2Music = new Audio(`../music/${this.player2King}/battleMusic.mp3`)
         this.turn = this.player1;
         this.enPassantTracker = new enPassantTracker
         this.movementCalculator = new MovementCalculations(this.board, this.player1, this.player2, this.enPassantTracker)
 
 
-
         //this order is from left to right, top to bottom.
-        this.player1.pieces = ["White Rider", "Rakshasa", "Matador", "Baal", "Demonica (SJ)", "Succubus", "Decarabia", "Principality", "Lilim", "Kusi Mitama", "Jack Frost", "Hua Po", "Black Ooze", "Ara Mitama", "Pixie", "Ame-no-Uzume"]
-        this.player2.pieces = ["Slime", "Saki Mitama", "Pyro Jack", "Jack Frost", "Pixie", "Nigi Mitama", "Mokoi", "Mandrake", "Cu Chulainn", "Mother Harlot", "Yaksini", "Loki", "Demi-Fiend", "Black Frost", "Mothman", "Trumpeter"]
+        this.player1.pieces = ["White Rider", "Rakshasa", "Matador", "Baal", this.player1King, "Succubus", "Decarabia", "Principality", "Lilim", "Kusi Mitama", "Jack Frost", "Hua Po", "Black Ooze", "Ara Mitama", "Pixie", "Ame-no-Uzume"]
+        this.player2.pieces = ["Slime", "Saki Mitama", "Pyro Jack", "Jack Frost", "Pixie", "Nigi Mitama", "Mokoi", "Mandrake", "Cu Chulainn", "Mother Harlot", "Yaksini", "Loki", this.player2King, "Black Frost", "Mothman", "Trumpeter"]
 
         //create callback methods
         this.highlightCell = null;
@@ -29,6 +32,7 @@ export class Game {
         this.updateTurnDisplay = null;
         this.highlightLegalMoves = null;
         this.unhighlightLegalMoves = null;
+        this.startDisplay = null;
         //method calls
 
 
@@ -45,8 +49,13 @@ export class Game {
     #legalMoves = [];
 
     initialize() {
-        this.updateTurnDisplay(this.turn)
+        this.startDisplay();
+    }
+    
+    startGame() {
         this.initializeBoard();
+        this.player1Music.play();
+        this.updateTurnDisplay(this.turn)
     }
 
     //method declarations
@@ -194,6 +203,7 @@ export class Game {
     changeTurn() {
         this.turn = this.turn == this.player1 ? this.player2 : this.player1
         this.updateTurnDisplay(this.turn);
+        this.toggleMusic()
     }
 
 
@@ -237,6 +247,19 @@ export class Game {
             if (equalArrays(location, this.enPassantTracker.enPassant)) { 
                 this.board.killPiece(killablePiece)
             }
+        }
+    }
+
+    toggleMusic() {
+        if (!this.player1Music.paused) {
+            this.player1Music.pause()
+            this.player2Music.play();
+            console.log("player2 music should be playing")
+        }
+        else {
+            this.player2Music.pause()
+            this.player1Music.play();
+            console.log("player 1 music should be playing agian.")
         }
     }
 }

@@ -2,9 +2,15 @@ import { Display } from "./display.js"
 import { Game } from "./game.js"
 
 
-
 let game = new Game();
 let display = new Display("chessBoard", game.board)
+
+
+
+
+
+
+
 
 display.onCellClick = (location) => {
     game.selectCell(location);
@@ -33,9 +39,17 @@ game.unhighlightLegalMoves = (legalMoves) => {
     display.unhighlightCells(legalMoves)
 }
 
-game.initialize()
+game.startDisplay = () => {
+    display.startDisplay();
+}
 
-console.log(`Created display ${display}`)
-console.log(`Created game ${game}`)
+display.startGame = () => {
+    game.initialize();
+    game.startGame();
+}
+
+
+//game.initialize()
+
 
 

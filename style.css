@@ -14,9 +14,21 @@ div#chessboard > div:hover {
     width: 700px;
 }
 
+.hidden {
+    display: none !important;
+}
+
 body {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 95vh;
+}
+
+#startButton {
+    width: 100px;
+    height: 70px;
+    font-size: xx-large;
 }
 
 .light {

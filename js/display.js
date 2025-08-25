@@ -3,6 +3,7 @@ export class Display {
     //variable initializations
     this.color1 = "lightgray"
     this.color2 = "white"
+    this.gameContainer = document.getElementById("gameContainer")
     this.chessBoard = document.getElementById(element)
     this.turnDisplay = document.getElementById("turnDisplay")
     this.hoveredPieceNameDisplay = document.getElementById("hoveredPieceNameDisplay")
@@ -10,13 +11,25 @@ export class Display {
     this.hoveredPieceResistDisplay = document.getElementById("hoveredPieceResistDisplay")
     this.hoveredPieceWeaknessDisplay = document.getElementById("hoveredPieceWeaknessDisplay")
     this.hoveredPieceDescriptionDisplay = document.getElementById("hoveredPieceDescriptionDisplay")
+    this.startButton = document.getElementById("startButton")
     this.boardSize = 700;
     this.onCellClick = null;
+    this.startGame = null;
     this.board = board
 
+
+    this.startButton.addEventListener("click", () => {
+      this.startButton.classList.add("hidden")
+      this.gameContainer.classList.remove("hidden")
+      this.startGame();
+    })
     //method calls
-    this.#initializeBoard();
+  }
+  
+  
+  startDisplay() {
     this.#drawSquares();
+    this.#initializeBoard();
     this.drawPieces();
   }
 
