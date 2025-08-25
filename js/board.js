@@ -11,7 +11,7 @@ export class Board {
     createPiece(type, player, location) {
         let piece = new Piece(type, player)
         this.grid[location[0]][location[1]] = piece;
-        
+
         //console.log(`Created a new ${piece.getName()} at ${location[0]} , ${location[1]}`)
     }
 

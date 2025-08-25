@@ -1,4 +1,4 @@
-export class movementCalculations {
+export class MovementCalculations {
     constructor(board, player1, player2) {
         this.board = board;
         this.debugging = true;

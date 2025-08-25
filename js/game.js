@@ -1,20 +1,21 @@
-import {Board} from "./board.js";
-import {Player} from "./player.js";
+import { Board } from "./board.js";
+import { Player } from "./player.js";
 import { equalArrays, containsArray } from "./ultilty.js";
-import { movementCalculations } from "./movementCalculations.js";
+import { MovementCalculations } from "./movementCalculations.js";
 
 
 export class Game {
     constructor() {
-        
+
         //object creation
         this.board = new Board();
         this.player1 = new Player("Aaron", 1);
         this.player2 = new Player("Ashton", 2);
         this.turn = this.player1;
-        this.movementCalculator = new movementCalculations(this.board, this.player1, this.player2)
-        
-        
+        this.movementCalculator = new MovementCalculations(this.board, this.player1, this.player2)
+        this.player1.pieces = ["White Rider", "Rakshasa", "Matador", "Baal", "Demonica (SJ)", "Succubus", "Decarabia", "Principality", "Lilim", "Kusi Mitama", "Jack Frost", "Hua Po", "Black Ooze", "Ara Mitama", "Angel", "Ame-no-Uzume"]
+        this.player2.pieces = ["Slime", "Saki Mitama", "Pyro Jack", "Preta", "Pixie", "Nigi Mitama", "Mokoi", "Mandrake", "Cu Chulainn", "Mother Harlot", "Yaksini", "Loki", "Demi-Fiend", "Black Frost", "Mothman", "Trumpeter"]
+
         //create callback methods
         this.highlightCell = null;
         this.unhighlightCell = null;
@@ -23,11 +24,11 @@ export class Game {
         this.highlightLegalMoves = null;
         this.unhighlightLegalMoves = null;
         //method calls
-        
-        
+
+
         //log messages
-        
-        
+
+
         //console.log("Creating Board")
         //console.log("Creating Player 1")
         //console.log("Creating Plaer 2")
@@ -36,7 +37,7 @@ export class Game {
     #selectedCell = [];
     #currentlySelected = false;
     #legalMoves = [];
-    
+
     initialize() {
         this.updateTurnDisplay(this.turn)
         this.initializeBoard();
@@ -46,62 +47,9 @@ export class Game {
 
 
     initializeBoard() {
-        //player 1 backrow
-        this.board.createPiece("White Rider", this.player1, [0,0]);
-        this.board.createPiece("Rakshasa", this.player1, [0,1]);
-        this.board.createPiece("Matador", this.player1, [0,2]);
-        this.board.getPiece([0,2]).isBishop = true;
-        this.board.createPiece("Baal", this.player1, [0,3]);
-        this.board.createPiece("Demonica (SJ)", this.player1, [0,4]);
-        this.board.createPiece("Succubus", this.player1, [0,5]);
-        this.board.getPiece([0,5]).isBishop = true;
-        this.board.createPiece("Decarabia", this.player1, [0,6]);
-        this.board.createPiece("Principality", this.player1, [0,7]);
-        //player 1 front row
-        this.board.createPiece("Lilim", this.player1, [1,0]);
-        this.board.createPiece("Kusi Mitama", this.player1, [1,1]);
-        this.board.createPiece("Jack Frost", this.player1, [1,2]);
-        this.board.createPiece("Hua Po", this.player1, [1,3]);
-        this.board.createPiece("Black Ooze", this.player1, [1,4]);
-        this.board.createPiece("Ara Mitama", this.player1, [1,5]);
-        this.board.createPiece("Angel", this.player1, [1,6]);
-        this.board.createPiece("Ame-no-Uzume", this.player1, [1,7]);
-
-
-
-
-        //player 2 front row
-        this.board.createPiece("Slime", this.player2, [6,0]);
-        this.board.createPiece("Saki Mitama", this.player2, [6,1]);
-        this.board.createPiece("Pyro Jack", this.player2, [6,2]);
-        this.board.createPiece("Preta", this.player2, [6,3]);
-        this.board.createPiece("Pixie", this.player2, [6,4]);
-        this.board.createPiece("Nigi Mitama", this.player2, [6,5]);
-        this.board.createPiece("Mokoi", this.player2, [6,6]);
-        this.board.createPiece("Mandrake", this.player2, [6,7]);
-        //player 2 backrow
-        this.board.createPiece("Cu Chulainn", this.player2, [7,0]);
-        this.board.createPiece("Mother Harlot", this.player2, [7,1]);
-        this.board.createPiece("Yaksini", this.player2, [7,2]);
-        this.board.getPiece([7,2]).isBishop = true;
-        this.board.createPiece("Loki", this.player2, [7,3]);
-        this.board.createPiece("Demi-Fiend", this.player2, [7,4]);
-        this.board.createPiece("Black Frost", this.player2, [7,5]);
-        this.board.getPiece([7,5]).isBishop = true;
-        this.board.createPiece("Mothman", this.player2, [7,6]);
-        this.board.createPiece("Trumpeter", this.player2, [7,7]);
-
-
-
-        /*////Old game creation logic. Keeping as a fallback
-        for (let row = 0; row < 2; row++) {
-            for (let column = 0; column < 8; column++) {
-                this.board.createPiece("Lucifer", this.player1, [row,column]);
-                this.board.createPiece("Succubus", this.player2, [7-row,column]);
-            }
-        }
-            */
-
+        //pass in an array of the names of the pieces. in order going left to right, top to bottom.
+        this.setPlayerPieces(this.player1.pieces, this.player1)
+        this.setPlayerPieces(this.player2.pieces, this.player2)
         this.updateBoard();
     }
 
@@ -147,7 +95,7 @@ export class Game {
 
 
                 //Hits Weakness
-                if (attacker.type.Attack_Type == defender.type.Weakness)  {
+                if (attacker.type.Attack_Type == defender.type.Weakness) {
                     console.log("Weakness Has been Hit")
                     this.board.movePiece(this.#selectedCell, location);
                     this.updateBoard();
@@ -180,7 +128,7 @@ export class Game {
             this.changeTurn();
             */
         }
-        
+
         //Selected an empty spot after selecting your own piece
         else if (this.#currentlySelected && !this.board.hasPiece(location)) {
             console.log("you want to move");
@@ -199,7 +147,7 @@ export class Game {
             }
         }
 
-        
+
 
         //invalid selections, give visual message
 
@@ -224,6 +172,23 @@ export class Game {
 
     }
 
+    setPlayerPieces(pieces, player) {
+        let start = player == this.player1 ? 0 : 6
+        console.log(start)
+        for (let i = 0; i < pieces.length; i++) {
+            let column = i % 8;
+            let row = Math.floor(i / 8) + start;
+            console.log(column)
+            console.log(row)
+            console.log(player)
+            console.log(pieces)
+            console.log(pieces[i])
+            this.board.createPiece(pieces[i], player, [row, column]);
+            if ((row == 0 || row == 7) && (column == 2 || column == 5))
+                this.board.getPiece([row, column]).isBishop = true;
+        }
+    }
+
     changeTurn() {
         this.turn = this.turn == this.player1 ? this.player2 : this.player1
         this.updateTurnDisplay(this.turn);
@@ -233,7 +198,7 @@ export class Game {
     calculateLegalMoves(location) {
         let currentLegalMoves = this.movementCalculator.calculateLegalMoves(location)
         console.log(currentLegalMoves)
-        this.#legalMoves = currentLegalMoves  
+        this.#legalMoves = currentLegalMoves
     }
 
 }
