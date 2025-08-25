@@ -47,20 +47,20 @@ export class Display {
     //setSize
     this.chessBoard.style.width = this.boardSize + "px";
     this.chessBoard.style.height = this.boardSize + "px";
-    this.chessBoard.style.borderColor =  "black";
-    this.chessBoard.style.borderStyle =  "solid";
-    this.chessBoard.style.borderWidth =  "1px";
+    this.chessBoard.style.borderColor = "black";
+    this.chessBoard.style.borderStyle = "solid";
+    this.chessBoard.style.borderWidth = "1px";
     this.chessBoard.style.display = "grid";
     this.chessBoard.style.gridTemplateColumns = "repeat(8, 1fr)";
     this.chessBoard.style.gridTemplateRows = "repeat(8, 1fr)";
   }
 
 
-  
+
   #drawSquares() { // This creates the board visually in HTML
     //this.chessBoard.innerHTML = ""
     for (let row = 0; row < 8; row++) {
-      
+
       for (let column = 0; column < 8; column++) {
         //create the cells
         let cell = document.createElement("div");
@@ -69,7 +69,7 @@ export class Display {
 
         //Style the cells
         cell.style.height = this.boardSize / 8 + "px";
-        cell.style.width  = this.boardSize / 8 + "px";
+        cell.style.width = this.boardSize / 8 + "px";
         cell.classList.add(((row + column) % 2) ? "light" : "dark")
         cell.classList.add("boardSquare")
         cell.id = cellID;
@@ -78,26 +78,25 @@ export class Display {
         //create the cell events
         cell.addEventListener("click", () => {
           if (this.onCellClick) {
-            this.onCellClick([row, column])    
+            this.onCellClick([row, column])
           }
         })
 
         this.chessBoard.appendChild(cell);
       }
-      
+
     }
   }
 
   //This looks through the board grid and then finds a corrosponding spot for each piece it finds then displays them.
 
   drawPieces() {
-    console.log(this.board.grid[0][0])
     for (let row = 0; row < 8; row++) {
       for (let column = 0; column < 8; column++) {
         let cell = document.getElementById(row + "," + column);
-        cell.removeEventListener("mouseenter", this.handleHoverEnter)  
-        cell.removeEventListener("mouseleave", this. handleHoverLeave)  
-        cell.innerHTML = ""; 
+        cell.removeEventListener("mouseenter", this.handleHoverEnter)
+        cell.removeEventListener("mouseleave", this.handleHoverLeave)
+        cell.innerHTML = "";
         if (this.board.grid[row][column] != null) {
           let currentPiece = this.board.grid[row][column];
           let pieceName = currentPiece.type.Name;
@@ -109,15 +108,24 @@ export class Display {
           //styles the piece
           piece.classList.add("piece")
           piece.classList.add("player" + currentPiece.player.id)
-          
-          
+
+          let pieceTypeIcon = document.createElement("div")
+          let pieceType = this.getPieceIcon(currentPiece)
+          let iconPath = `./img/Piece Types/${pieceType}.png`
+
+          pieceTypeIcon.style.backgroundImage = `url("${iconPath}")`
+          pieceTypeIcon.classList.add("pieceTypeIcon")
+          piece.appendChild(pieceTypeIcon)
+
+
+
           //Sets up Hover Events
-          cell.addEventListener("mouseenter", this.handleHoverEnter)  
-          cell.addEventListener("mouseleave", this. handleHoverLeave)  
+          cell.addEventListener("mouseenter", this.handleHoverEnter)
+          cell.addEventListener("mouseleave", this.handleHoverLeave)
 
-          
 
-          
+
+
 
 
 
@@ -125,17 +133,17 @@ export class Display {
 
           //preLoads the image to make sure that it works before setting the image. If it doesnt work then you get the default pawn image.
           const img = new Image();
-            img.onload = () => {
-              // file exists, safe to use
-              piece.style.backgroundImage = `url("${pieceIcon}")`;
-            };
-            img.onerror = () => {
-              // file not found, use fallback
-              piece.style.backgroundImage = `url("./img/SMT Demons/Rank 1/Pawn.png")`;
-            };
-            img.src = pieceIcon;
+          img.onload = () => {
+            // file exists, safe to use
+            piece.style.backgroundImage = `url("${pieceIcon}")`;
+          };
+          img.onerror = () => {
+            // file not found, use fallback
+            piece.style.backgroundImage = `url("./img/SMT Demons/Rank 1/Pawn.png")`;
+          };
+          img.src = pieceIcon;
 
-          
+
           //Adds piece
           cell.appendChild(piece)
 
@@ -143,9 +151,9 @@ export class Display {
       }
     }
   }
-  
+
   updateTurnDisplay(turn) {
-    let turnString = `Current Turn: ${turn.name}` 
+    let turnString = `Current Turn: ${turn.name}`
     this.turnDisplay.innerText = turnString;
   }
 
@@ -168,6 +176,32 @@ export class Display {
     this.hoveredPieceWeaknessDisplay.innerText = ""
     this.hoveredPieceDescriptionDisplay.innerText = ""
   }
+
+  getPieceIcon(currentPiece) {
+    let pieceTier = currentPiece.type.Tier
+    let icon;
+    switch (pieceTier) {
+      case 1: { icon = "pawn"; break }
+      case 2: {
+        if (currentPiece.isBishop) {
+          icon = "bishop"
+        }
+        else if (!currentPiece.isBishop) {
+          icon = "Knight"
+        }
+        else {
+          alert("Something has gone terribly wrong with the bishop knight logic in the piece type icon getter")
+        }
+        break
+      }
+      case 3: { icon = "rook"; break }
+      case 4: { icon = "queen"; break }
+      case 5: { icon = "king"; break }
+      default: (alert("Something has gone terribly wrong with the piece icon getter."))
+    }
+    return icon
+  }
+
 }
 
 

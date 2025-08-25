@@ -2,6 +2,7 @@ import { Board } from "./board.js";
 import { Player } from "./player.js";
 import { equalArrays, containsArray } from "./ultilty.js";
 import { MovementCalculations } from "./movementCalculations.js";
+import { enPassantTracker } from "../enPassantTracker.js";
 
 
 export class Game {
@@ -12,9 +13,14 @@ export class Game {
         this.player1 = new Player("Aaron", 1);
         this.player2 = new Player("Ashton", 2);
         this.turn = this.player1;
-        this.movementCalculator = new MovementCalculations(this.board, this.player1, this.player2)
-        this.player1.pieces = ["White Rider", "Rakshasa", "Matador", "Baal", "Demonica (SJ)", "Succubus", "Decarabia", "Principality", "Lilim", "Kusi Mitama", "Jack Frost", "Hua Po", "Black Ooze", "Ara Mitama", "Angel", "Ame-no-Uzume"]
-        this.player2.pieces = ["Slime", "Saki Mitama", "Pyro Jack", "Preta", "Pixie", "Nigi Mitama", "Mokoi", "Mandrake", "Cu Chulainn", "Mother Harlot", "Yaksini", "Loki", "Demi-Fiend", "Black Frost", "Mothman", "Trumpeter"]
+        this.enPassantTracker = new enPassantTracker
+        this.movementCalculator = new MovementCalculations(this.board, this.player1, this.player2, this.enPassantTracker)
+
+
+
+        //this order is from left to right, top to bottom.
+        this.player1.pieces = ["White Rider", "Rakshasa", "Matador", "Baal", "Demonica (SJ)", "Succubus", "Decarabia", "Principality", "Lilim", "Kusi Mitama", "Jack Frost", "Hua Po", "Black Ooze", "Ara Mitama", "Pixie", "Ame-no-Uzume"]
+        this.player2.pieces = ["Slime", "Saki Mitama", "Pyro Jack", "Jack Frost", "Pixie", "Nigi Mitama", "Mokoi", "Mandrake", "Cu Chulainn", "Mother Harlot", "Yaksini", "Loki", "Demi-Fiend", "Black Frost", "Mothman", "Trumpeter"]
 
         //create callback methods
         this.highlightCell = null;
@@ -55,14 +61,12 @@ export class Game {
 
 
     selectCell(location) {
-        console.log(`You clickd on ${location[0]}, ${location[1]}`)
 
-
-
+        console.log(`you clicked on ${location}`)
         //Selected an Available piece from the current active turn user
         if (!this.#currentlySelected && this.board.hasPiece(location) && this.turn == this.board.getPiece(location).player) {
             this.#currentlySelected = true;
-            this.#selectedCell = location;
+            this.#selectedCell = [...location];
             this.highlightCell(location);
             this.calculateLegalMoves(location)
             this.highlightLegalMoves(this.#legalMoves)
@@ -85,7 +89,8 @@ export class Game {
             if (containsArray(this.#legalMoves, location)) {
                 this.unhighlightCell(this.#selectedCell);
                 this.unhighlightLegalMoves(this.#legalMoves)
-
+                this.SetEnPassant(this.#selectedCell, location)
+                
                 this.#currentlySelected = false;
 
                 // do calculation. if move is neutral do this
@@ -114,6 +119,7 @@ export class Game {
                     this.updateBoard();
                     this.changeTurn();
                 }
+
             }
             else {
                 console.log("Invalid attack")
@@ -141,6 +147,10 @@ export class Game {
                 this.unhighlightLegalMoves(this.#legalMoves)
 
                 this.#currentlySelected = false;
+                //sets en passant when a new pawn is moved, resets it when another piece is moved
+
+                this.checkEnPassantKill(location)
+                this.SetEnPassant(this.#selectedCell, location)
                 this.board.movePiece(this.#selectedCell, location);
                 this.updateBoard()
                 this.changeTurn();
@@ -167,22 +177,14 @@ export class Game {
 
         else {
             alert("Something Unexpected Happened");
-        }
-
-
+        }   
     }
 
     setPlayerPieces(pieces, player) {
         let start = player == this.player1 ? 0 : 6
-        console.log(start)
         for (let i = 0; i < pieces.length; i++) {
             let column = i % 8;
             let row = Math.floor(i / 8) + start;
-            console.log(column)
-            console.log(row)
-            console.log(player)
-            console.log(pieces)
-            console.log(pieces[i])
             this.board.createPiece(pieces[i], player, [row, column]);
             if ((row == 0 || row == 7) && (column == 2 || column == 5))
                 this.board.getPiece([row, column]).isBishop = true;
@@ -201,4 +203,40 @@ export class Game {
         this.#legalMoves = currentLegalMoves
     }
 
+    SetEnPassant(oldLocation, newLocation) {
+        let piece = this.board.getPiece(oldLocation)
+        //Checks for pawn
+        let enPassant = [];
+        if (piece.type.Tier == 1) {
+            //checks for 2 space move above 
+            if(oldLocation[0] + 2 == newLocation[0]) {
+                enPassant = [...newLocation];
+                enPassant[0] -= 1;
+            }
+            else if(oldLocation[0] - 2 == newLocation[0]) {
+                enPassant = [...newLocation];
+                enPassant[0] += 1;
+            }
+            else {/*Enpassant not needed.*/}
+        }
+        
+        
+        this.enPassantTracker.enPassant[0] = enPassant[0];
+        this.enPassantTracker.enPassant[1] = enPassant[1];
+    }
+
+
+    checkEnPassantKill(location) {
+        let selectedPiece = this.board.getPiece(this.#selectedCell)
+        let direction = selectedPiece.player == this.player1 ? -1 : 1; 
+        console.log(direction)
+        
+        if (this.enPassantTracker.enPassant[0] != null && this.enPassantTracker.enPassant[1] != null) {
+            let killablePiece = [this.enPassantTracker.enPassant[0] + direction, this.enPassantTracker.enPassant[1]]
+            console.log(`your killablePiece is  ${killablePiece}`)
+            if (equalArrays(location, this.enPassantTracker.enPassant)) { 
+                this.board.killPiece(killablePiece)
+            }
+        }
+    }
 }

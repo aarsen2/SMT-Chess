@@ -37,4 +37,12 @@ export class Board {
         console.log(oldLocation);
         console.log(newLocation);
     }
+
+    killPiece(location) {
+        console.log("killing piece")
+        console.log(location)
+        console.log(this.grid[location[0]][location[1]])
+        this.grid[location[0]][location[1]] = null;
+        console.log(this.grid[location[0]][location[1]])
+    }
 }

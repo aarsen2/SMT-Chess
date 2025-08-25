@@ -1,9 +1,12 @@
+import { equalArrays } from "./ultilty.js";
+
 export class MovementCalculations {
-    constructor(board, player1, player2) {
+    constructor(board, player1, player2, enPassantTracker) {
         this.board = board;
         this.debugging = true;
         this.player1 = player1
         this.player2 = player2
+        this.enPassantTracker = enPassantTracker
 
     }
 
@@ -25,7 +28,7 @@ export class MovementCalculations {
 
             //case 2: { currentLegalMoves = this.checkKnight(location) } break;
             // when i implimentBishop
-            case 2: { currentLegalMoves = selectedPiece.isBishop ? this.checkBishop(location) : this.checkKnight(location)} break;
+            case 2: { currentLegalMoves = selectedPiece.isBishop ? this.checkBishop(location) : this.checkKnight(location) } break;
 
             case 3: { currentLegalMoves = this.checkRook(location) } break;
 
@@ -35,8 +38,6 @@ export class MovementCalculations {
 
             default: alert("Something has gone terribly wrong in the switch stament for move legality")
         }
-
-        console.log(currentLegalMoves)
         return currentLegalMoves
     }
 
@@ -50,7 +51,6 @@ export class MovementCalculations {
         let piecePlayer = selectedPiece.player
         let direction = piecePlayer == this.player1 ? 1 : -1;
         let testSpace = [];
-
         if (this.debugging) {
             console.log("Calculating legal moves for Pawn")
         }
@@ -72,19 +72,28 @@ export class MovementCalculations {
             }
         }
 
-        //checks to the right diagonal for enemy
+        //checks to the right diagonal for enemy or enPassant
         testSpace = [location[0] + direction, (location[1] + 1)];
         if (this.onBoard(testSpace)) {
             if (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer) {
                 currentLegalMoves[currentLegalMoves.length] = testSpace
             }
+            if (equalArrays(testSpace, this.enPassantTracker.enPassant)) {
+                currentLegalMoves[currentLegalMoves.length] = testSpace
+            }
         }
 
-        //checks to the left Diagonal for enemy
+        //checks to the left Diagonal for enemy or enPassant
         testSpace = [location[0] + direction, (location[1] - 1)];
         if (this.onBoard(testSpace)) {
+
             if (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer) {
                 currentLegalMoves[currentLegalMoves.length] = testSpace
+            }
+
+            if (equalArrays(testSpace, this.enPassantTracker.enPassant)) {
+                currentLegalMoves[currentLegalMoves.length] = testSpace
+
             }
         }
 

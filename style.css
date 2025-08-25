@@ -59,7 +59,6 @@ body {
     width: 80%;
     height: 80%;
     background-size: 100% 100%;
-
 }
 
 .boardSquare:has(.player2) {
@@ -70,6 +69,15 @@ body {
 .boardSquare:has(.player1) {
     background-image: linear-gradient(rgb(255,200,200),rgb(255,200,200));
     background-blend-mode: multiply;
+}
+
+.pieceTypeIcon {
+    width: 25px;
+    height: 25px;
+    background-size: 100% 100%;
+    position: relative;
+    top: -5px;
+    left: -10px;
 }
 
 #turnDisplay {
