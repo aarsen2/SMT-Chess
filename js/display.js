@@ -12,7 +12,6 @@ export class Display {
     this.hoveredPieceWeaknessDisplay = document.getElementById("hoveredPieceWeaknessDisplay")
     this.hoveredPieceDescriptionDisplay = document.getElementById("hoveredPieceDescriptionDisplay")
     this.startButton = document.getElementById("startButton")
-    this.boardSize = 700;
     this.onCellClick = null;
     this.startGame = null;
     this.board = board
@@ -58,8 +57,7 @@ export class Display {
 
   #initializeBoard() {
     //setSize
-    this.chessBoard.style.width = this.boardSize + "px";
-    this.chessBoard.style.height = this.boardSize + "px";
+    this.boardSize = parseInt(this.chessBoard.offsetWidth)
     this.chessBoard.style.borderColor = "black";
     this.chessBoard.style.borderStyle = "solid";
     this.chessBoard.style.borderWidth = "1px";

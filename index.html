@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Test</title>
+        <title>Shin Megami Tensei Chess</title>
         <link rel="icon" type="image/x-icon" href="./favicon.ico">
         <link rel="stylesheet" href="style.css">
         <script type="module" src="./js/main.js" defer></script>
@@ -9,24 +9,25 @@
     <body>
         <button id="startButton">Start</button>
         <div id="gameContainer" class="hidden">
-            <h1 id="turnDisplay"></h1>
+            <div id="playerDisplay"></div>
             <div id="chessBoard" ></div>
             <div id="hoverSelectionBox">
+                <h1 id="turnDisplay"></h1>
                 <div id="hoverSubSection">
                     <div>
-                        <h4>Name</h4>
+                        <h4 class="pieceLabel">Name</h4>
                         <h3 id="hoveredPieceNameDisplay"></h3>
                     </div>
                     <div>
-                        <h4>Attack Type</h4>
+                        <h4 class="pieceLabel">Attack Type</h4>
                         <h3 id="hoveredPieceAttackDisplay"></h3>
                     </div>
                     <div>
-                        <h4>Resistance</h4>
+                        <h4 class="pieceLabel">Resistance</h4>
                         <h3 id="hoveredPieceResistDisplay"></h3>
                     </div>
                     <div>
-                        <h4>Weakness</h4>
+                        <h4 class="pieceLabel">Weakness</h4>
                         <h3 id="hoveredPieceWeaknessDisplay"></h3>
                     </div>
                 </div>
