@@ -1,0 +1,62 @@
+Name,Tier,MustBe,AttackType,Resistance,Weakness,Skill,SkillType,Description
+Demi-Fiend,5,King,Almighty,-,-,-,-,*Can only be King
+Hero (SMT 1),5,King,Almighty,-,-,-,-,*Can only be King
+Demonica (SJ),5,King,Almighty,-,-,-,-,*Can only be King
+Flynn,5,King,Almighty,-,-,-,-,*Can only be King
+Nahobino,5,King,Almighty,-,-,-,-,*Can only be King
+Siegfried,4,-,Phys,Phys,Dark,Brave Blade,Pierce,Pierce
+Beelzebub,4,-,Dark,Fire,Light,Demonic Decree,Pierce,Pierce
+Metatron,4,-,Light,Light,Dark,Divine Judgement,Pierce,Pierce
+Pascal,4,-,Almighty,-,-,-,-,>Pascal the dog is here.
+Lucifer,4,-,Almighty,-,-,-,-,-
+Loki,4,-,Ice,Ice,Fire,Niflheim,Pierce,Pierce
+Baal,4,-,Wind,Wind,Elec,Panta Rhei,Pierce,Pierce
+Surt,4,-,Fire,Fire,Ice,Ragnarok,Pierce,Pierce
+Cybele,4,-,Light,Wind,Phys,Samarecarm,-,Revive pawn on bottom most possible space (starting from left side).
+Ishtar,4,-,Elec,Elec,Phys,Samarecarm,-,Revive pawn on bottom most possible space (starting from left side).
+Odin,4,-,Elec,Elec,Wind,Thunder Reign,Pierce,Pierce
+Scathach,3,-,Ice,Wind,Fire,Bufudyne,-,Can claim a piece from 1 space away. Target must be weak to Ice.
+Trumpeter,3,-,Support,-,-,Evil Melody,-,"If a piece takes him, they also die. He can still check the King."
+Cu Chulainn,3,-,Wind,Wind,Elec,Gae Bolg,-,Can run over up to 2 adjacent enemy pieces in a straight line as long as neither resists.
+White Rider,3,-,Light,Ice,Fire,God's Bow,Pierce,Pierce
+Principality,3,-,Light,Light,Dark,Hamaon,-,Can claim a piece from 1 space away. Target must be weak to Light.
+Hell Biker,3,-,Fire,Dark,Ice,Hell Burner,-,Can run over up to 2 adjacent enemy pieces in a straight line as long as neither resists.
+Girimekhala,3,-,Phys,Phys,Light,One-Shot Kill,-,"Upon capture, roll a D6. If 6 is rolled, he can move/capture again. Can be repeated until D6 fails."
+Daisoujou,3,-,Light,Light,Phys,Samsara,-,Choose 2 spaces within the box to attack. Targets who resist aren't affected.
+Black Rider,3,-,Dark,Dark,Light,Soul Divide,-,Choose 2 spaces within the box to attack. Targets who resist aren't affected.
+Seth,3,-,Wind,Fire,Light,Zandyne,-,Can claim a piece from 1 space away. Target must be weak to Wind.
+Thor,3,-,Elec,Phys,Wind,Ziodyne,-,Can claim a piece from 1 space away. Target must be weak to Elec.
+Sati,2,-,Fire,Fire,Ice,Agidyne,-,Can claim a piece from 1 space away. Target must be weak to Fire.
+Throne,2,-,Light,Fire,Dark,Auto-Rakukaja,-,Can only be taken by Almighty/Weakness for the first 3 turns
+Nekomata,2,-,Phys,Wind,Elec,Auto-Sukukaja,-,"For the first 3 turns, this piece may make 2 movements. An attack may only be made on the first move."
+Rakshasa,2,-,Phys,Phys,Wind,Auto-Tarukaja,-,"If he takes a piece within the first 3 turns, gets a free 1-more (doesn't need to hit weakness)"
+Mother Harlot,2,Knight,Ice,Elec,Phys,Death Lust,-,FE 2 space range - can use turn to move enemy pawn forward or backward one square.
+Mothman,2,-,Elec,Elec,Ice,Eerie Sound,-,Pawns cannot defeat Mothman for 1 turn
+Incubus,2,Knight,Almighty,Dark,Phys,Energy Drain,OneMore,Gets a 1-more if taking a bishop
+Yaksini,2,-,Phys,Phys,Fire,Getsu-ei,-,Can claim a piece from 1 space away. Target must be weak to Phys.
+Forneus,2,-,Ice,Ice,Fire,Makarakarn,-,Null capture for one turn. Ends turn. You can't move at beginning of turn thats it foo
+Black Frost,2,-,Dark,Dark,Light,Mudoon,-,Can claim a piece from 1 space away. Target must be weak to Dark.
+Matador,2,Bishop,Wind,Wind,Elec,Red Capote,-,Can move one space left or right. This uses a turn.
+Succubus,2,Bishop,Almighty,Dark,Phys,Soul Drain,OneMore,Gets a 1-more if taking a knight 
+Eligor,2,-,Phys,Phys,Elec,Sukukaja,-,"If adjacent to ally pawn at the beginning of the turn, you may move that pawn forward 2 squares."
+Red Rider,2,-,Phys,Dark,Ice,Terror Blade,Pierce,Pierce
+Decarabia,2,-,Ice,Light,Phys,Tetrakarn,-,Null capture for one turn. Ends turn. You can't move at beginning of turn thats it foo
+Pale Rider,2,-,Support,Phys,Light,Toxic Cloud,-,"If checks King, can poison adjacent piece. That piece is taken after opponent's next turn."
+Ame-no-Uzume,1,Pawn,Light,Elec,Phys,-,-,-
+Angel,1,Pawn,Light,Light,Phys,-,-,-
+Ara Mitama,1,Pawn,Fire,Fire,Ice,-,-,-
+Berith,1,Pawn,Phys,Light,Ice,-,-,-
+Black Ooze,1,Pawn,Almighty,-,All,-,-,-
+Fortuna,1,Pawn,Wind,Wind,Elec,-,-,-
+Hua Po,1,Pawn,Fire,Dark,Phys,-,-,-
+Jack Frost,1,Pawn,Ice,Ice,Fire,-,-,-
+Kusi Mitama,1,Pawn,Wind,Wind,Elec,-,-,-
+Lilim,1,Pawn,Dark,Dark,Light,-,-,-
+Mandrake,1,Pawn,Elec,Wind,Fire,-,-,-
+Mokoi,1,Pawn,Dark,Dark,Light,-,-,-
+Nigi Mitama,1,Pawn,Ice,Ice,Fire,-,-,-
+Pixie,1,Pawn,Wind,Light,Phys,-,-,-
+Preta,1,Pawn,Phys,Dark,Elec,-,-,-
+Pyro Jack,1,Pawn,Fire,Fire,Ice,-,-,-
+Saki Mitama,1,Pawn,Elec,Elec,Wind,-,-,-
+Slime,1,Pawn,Almighty,-,All,-,-,-

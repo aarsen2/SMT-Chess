@@ -3,7 +3,7 @@ import { Player } from "./player.js";
 import { equalArrays, containsArray } from "./ultilty.js";
 import { MovementCalculations } from "./movementCalculations.js";
 import { enPassantTracker } from "./enPassantTracker.js";
-import { ActionManger } from "./actionManager.js";
+import { ActionManager } from "./actionManager.js";
 
 
 export class Game {
@@ -19,7 +19,7 @@ export class Game {
         this.player2Music = new Audio(`music/${this.player2King}/battleMusic.mp3`)
         this.pascalSong = new Audio(`music/Pascal.mp3`)
         this.turn = this.player1;
-        this.actionManger = new ActionManger(this.board)
+        this.actionManager = new ActionManager(this.board)
         this.enPassantTracker = new enPassantTracker
         this.movementCalculator = new MovementCalculations(this.board, this.player1, this.player2, this.enPassantTracker)
 
@@ -118,17 +118,17 @@ export class Game {
 
                 let attacker = this.board.getPiece(this.#selectedCell)
                 let defender = this.board.getPiece(location)
+                console.log("Attack manager returns"+ this.actionManager.skillCheck("weakness", attacker, defender))
 
                 //Hits Weakness
-                if (this.actionManger.hitWeakness(attacker,defender)) {
+                if (this.actionManager.hitWeakness(attacker,defender) || this.actionManager.skillCheck("weakness", attacker, defender)) {
                     console.log("Weakness Has been Hit")
                     this.board.movePiece(this.#selectedCell, location);
                     this.updateBoard();
                     console.log("You get one more turn")
                 }
-
                 //Hits resistance
-                else if (this.actionManger.hitResistance(attacker,defender)) {
+                else if (this.actionManager.hitResistance(attacker,defender) && this.actionManager.skillCheck("resistance", attacker, defender)) {
                     console.log("Resistance Has been Hit. You lost your turn.")
                     this.changeTurn()
                 }

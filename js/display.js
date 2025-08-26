@@ -10,6 +10,7 @@ export class Display {
     this.hoveredPieceAttackDisplay = document.getElementById("hoveredPieceAttackDisplay")
     this.hoveredPieceResistDisplay = document.getElementById("hoveredPieceResistDisplay")
     this.hoveredPieceWeaknessDisplay = document.getElementById("hoveredPieceWeaknessDisplay")
+    this.hoveredPieceSkillDisplay = document.getElementById("hoveredPieceSkillDisplay")
     this.hoveredPieceDescriptionDisplay = document.getElementById("hoveredPieceDescriptionDisplay")
     this.startButton = document.getElementById("startButton")
     this.onCellClick = null;
@@ -177,6 +178,7 @@ export class Display {
     this.hoveredPieceAttackDisplay.innerText = hoveredPiece.type.AttackType
     this.hoveredPieceResistDisplay.innerText = hoveredPiece.type.Resistance
     this.hoveredPieceWeaknessDisplay.innerText = hoveredPiece.type.Weakness
+    this.hoveredPieceSkillDisplay.innerText = hoveredPiece.type.Skill
     this.hoveredPieceDescriptionDisplay.innerText = hoveredPiece.type.Description
   }
 
@@ -185,6 +187,7 @@ export class Display {
     this.hoveredPieceAttackDisplay.innerText = ""
     this.hoveredPieceResistDisplay.innerText = ""
     this.hoveredPieceWeaknessDisplay.innerText = ""
+    this.hoveredPieceSkillDisplay.innerText = ""
     this.hoveredPieceDescriptionDisplay.innerText = ""
   }
 

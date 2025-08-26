@@ -9,7 +9,10 @@
     <body>
         <button id="startButton">Start</button>
         <div id="gameContainer" class="hidden">
-            <div id="playerDisplay"></div>
+            <div id="playerDisplay">
+                <div id="player1Display"></div>
+                <div id="player2Display"></div>
+            </div>
             <div id="chessBoard" ></div>
             <div id="hoverSelectionBox">
                 <h1 id="turnDisplay"></h1>
@@ -29,6 +32,10 @@
                     <div>
                         <h4 class="pieceLabel">Weakness</h4>
                         <h3 id="hoveredPieceWeaknessDisplay"></h3>
+                    </div>
+                    <div>
+                        <h4 class="pieceLabel">Skill</h4>
+                        <h3 id="hoveredPieceSkillDisplay"></h3>
                     </div>
                 </div>
                 <hr>

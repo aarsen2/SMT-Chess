@@ -196,6 +196,24 @@ export class MovementCalculations {
                     }
                 }
             }
+
+
+            // Matador Skill
+            if (this.board.getPiece(location).type.Name == "Matador") {
+                console.log("now were playing with bulls")
+                testSpace = [location[0] + 0, location[1] + 1];
+                if (this.onBoard(testSpace)) {
+                    if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+                testSpace = [location[0] + 0, location[1] - 1];
+                if (this.onBoard(testSpace)) {
+                    if (this.board.getPiece(testSpace) == null || (this.board.getPiece(testSpace) != null && this.board.getPiece(testSpace).player != piecePlayer)) {
+                        currentLegalMoves[currentLegalMoves.length] = testSpace
+                    }
+                }
+            }
         }
         return currentLegalMoves
     }
