@@ -1,3 +1,20 @@
+/*     Full document styling     */
+
+* {
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: auto;
+}
+
+/*     Initial Screen Styling     */
+
+
+
 div#chessBoard {
     border: 1px solid black;
     display: grid;
@@ -28,12 +45,6 @@ div#chessboard > div:hover {
     display: none !important;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 95vh;
-}
 
 #startButton {
     width: 100px;
@@ -102,20 +113,29 @@ body {
     left: -10px;
 }
 
-#turnDisplay {
-    text-align: center;
-}
+
+
+
+
+/*     Main Game styling     */
+
+
+/*  Hover Selection Box*/
+
 
 
 #hoverSelectionBox {
-        background-image: radial-gradient(circle at center, rgb(50,50,50), rgb(100,100,100), white );
+    background-image: radial-gradient(ellipse at center, rgb(50,50,50), rgb(100,100,100), white );
+    
+}
 
+#turnDisplay {
+    text-align: center;
 }
 
 #hoverSubSection {
     height: auto;
     min-height: 500px;
-    font-family: sans-serif;
     color: white;
     -webkit-text-stroke: 1px rgb(200,255,255);
     text-align: left;
@@ -128,12 +148,6 @@ body {
     align-items: center;
 }
 
-.pieceLabel {
-    margin: 2%;
-    width: 100px;
-
-}
-
 #hoveredPieceDescriptionDisplay {
     height: 100px;
     width: 90%;
@@ -142,7 +156,12 @@ body {
     font-family: sans-serif;
 }
 
+.pieceLabel {
+    margin: 2%;
+    width: 100px;
+    
+}
+
 hr {
     width: 75%;
 }
-
