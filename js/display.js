@@ -198,7 +198,7 @@ export class Display {
           icon = "bishop"
         }
         else if (!currentPiece.isBishop) {
-          icon = "Knight"
+          icon = "knight"
         }
         else {
           alert("Something has gone terribly wrong with the bishop knight logic in the piece type icon getter")

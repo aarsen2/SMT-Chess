@@ -14,9 +14,9 @@ export class Game {
         this.player2 = new Player("Ashton", 2);
         this.player1King = "Demonica (SJ)"
         this.player2King = "Demi-Fiend"
-        this.player1Music = new Audio(`../music/${this.player1King}/battleMusic.mp3`)
-        this.player2Music = new Audio(`../music/${this.player2King}/battleMusic.mp3`)
-        this.pascalSong = new Audio(`../music/Pascal.mp3`)
+        this.player1Music = new Audio(`music/${this.player1King}/battleMusic.mp3`)
+        this.player2Music = new Audio(`music/${this.player2King}/battleMusic.mp3`)
+        this.pascalSong = new Audio(`music/Pascal.mp3`)
         this.turn = this.player1;
         this.enPassantTracker = new enPassantTracker
         this.movementCalculator = new MovementCalculations(this.board, this.player1, this.player2, this.enPassantTracker)
