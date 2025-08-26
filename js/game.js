@@ -3,6 +3,7 @@ import { Player } from "./player.js";
 import { equalArrays, containsArray } from "./ultilty.js";
 import { MovementCalculations } from "./movementCalculations.js";
 import { enPassantTracker } from "./enPassantTracker.js";
+import { ActionManger } from "./actionManager.js";
 
 
 export class Game {
@@ -18,6 +19,7 @@ export class Game {
         this.player2Music = new Audio(`music/${this.player2King}/battleMusic.mp3`)
         this.pascalSong = new Audio(`music/Pascal.mp3`)
         this.turn = this.player1;
+        this.actionManger = new ActionManger(this.board)
         this.enPassantTracker = new enPassantTracker
         this.movementCalculator = new MovementCalculations(this.board, this.player1, this.player2, this.enPassantTracker)
 
@@ -71,7 +73,6 @@ export class Game {
 
 
     selectCell(location) {
-
         console.log(`you clicked on ${location}`)
         //Selected an Available piece from the current active turn user
         if (!this.#currentlySelected && this.board.hasPiece(location) && this.turn == this.board.getPiece(location).player) {
@@ -118,9 +119,8 @@ export class Game {
                 let attacker = this.board.getPiece(this.#selectedCell)
                 let defender = this.board.getPiece(location)
 
-
                 //Hits Weakness
-                if (attacker.type.Attack_Type == defender.type.Weakness || defender.type.Weakness === "All") {
+                if (this.actionManger.hitWeakness(attacker,defender)) {
                     console.log("Weakness Has been Hit")
                     this.board.movePiece(this.#selectedCell, location);
                     this.updateBoard();
@@ -128,7 +128,7 @@ export class Game {
                 }
 
                 //Hits resistance
-                else if (attacker.type.Attack_Type == defender.type.Resistance) {
+                else if (this.actionManger.hitResistance(attacker,defender)) {
                     console.log("Resistance Has been Hit. You lost your turn.")
                     this.changeTurn()
                 }

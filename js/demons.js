@@ -3,7 +3,7 @@ const demonString = `[
   {
     "Name": "Demi-Fiend",
     "Tier": 5,
-    "Attack Type": "Almighty",
+    "AttackType": "Almighty",
     "Resistance": "-",
     "Weakness": "-",
     "Skill": "-",
@@ -12,7 +12,7 @@ const demonString = `[
   {
     "Name": "Hero (SMT 1)",
     "Tier": 5,
-    "Attack Type": "Almighty",
+    "AttackType": "Almighty",
     "Resistance": "-",
     "Weakness": "-",
     "Skill": "-",
@@ -21,7 +21,7 @@ const demonString = `[
   {
     "Name": "Demonica (SJ)",
     "Tier": 5,
-    "Attack Type": "Almighty",
+    "AttackType": "Almighty",
     "Resistance": "-",
     "Weakness": "-",
     "Skill": "-",
@@ -30,7 +30,7 @@ const demonString = `[
   {
     "Name": "Flynn",
     "Tier": 5,
-    "Attack Type": "Almighty",
+    "AttackType": "Almighty",
     "Resistance": "-",
     "Weakness": "-",
     "Skill": "-",
@@ -39,7 +39,7 @@ const demonString = `[
   {
     "Name": "Nahobino",
     "Tier": 5,
-    "Attack Type": "Almighty",
+    "AttackType": "Almighty",
     "Resistance": "-",
     "Weakness": "-",
     "Skill": "-",
@@ -48,7 +48,7 @@ const demonString = `[
   {
     "Name": "Siegfried",
     "Tier": 4,
-    "Attack Type": "Phys",
+    "AttackType": "Phys",
     "Resistance": "Phys",
     "Weakness": "Dark",
     "Skill": "Brave Blade",
@@ -57,7 +57,7 @@ const demonString = `[
   {
     "Name": "Beelzebub",
     "Tier": 4,
-    "Attack Type": "Dark",
+    "AttackType": "Dark",
     "Resistance": "Fire",
     "Weakness": "Light",
     "Skill": "Demonic Decree",
@@ -66,7 +66,7 @@ const demonString = `[
   {
     "Name": "Metatron",
     "Tier": 4,
-    "Attack Type": "Light",
+    "AttackType": "Light",
     "Resistance": "Light",
     "Weakness": "Dark",
     "Skill": "Divine Judgement",
@@ -75,7 +75,7 @@ const demonString = `[
   {
     "Name": "Pascal",
     "Tier": 4,
-    "Attack Type": "Almighty",
+    "AttackType": "Almighty",
     "Resistance": "-",
     "Weakness": "-",
     "Skill": "-",
@@ -84,7 +84,7 @@ const demonString = `[
   {
     "Name": "Lucifer",
     "Tier": 4,
-    "Attack Type": "Almighty",
+    "AttackType": "Almighty",
     "Resistance": "-",
     "Weakness": "-",
     "Skill": "-",
@@ -93,7 +93,7 @@ const demonString = `[
   {
     "Name": "Loki",
     "Tier": 4,
-    "Attack Type": "Ice",
+    "AttackType": "Ice",
     "Resistance": "Ice",
     "Weakness": "Fire",
     "Skill": "Niflheim",
@@ -102,7 +102,7 @@ const demonString = `[
   {
     "Name": "Baal",
     "Tier": 4,
-    "Attack Type": "Wind",
+    "AttackType": "Wind",
     "Resistance": "Wind",
     "Weakness": "Elec",
     "Skill": "Panta Rhei",
@@ -111,7 +111,7 @@ const demonString = `[
   {
     "Name": "Surt",
     "Tier": 4,
-    "Attack Type": "Fire",
+    "AttackType": "Fire",
     "Resistance": "Fire",
     "Weakness": "Ice",
     "Skill": "Ragnarok",
@@ -120,7 +120,7 @@ const demonString = `[
   {
     "Name": "Cybele",
     "Tier": 4,
-    "Attack Type": "Light",
+    "AttackType": "Light",
     "Resistance": "Wind",
     "Weakness": "Phys",
     "Skill": "Samarecarm",
@@ -129,7 +129,7 @@ const demonString = `[
   {
     "Name": "Ishtar",
     "Tier": 4,
-    "Attack Type": "Elec",
+    "AttackType": "Elec",
     "Resistance": "Elec",
     "Weakness": "Phys",
     "Skill": "Samarecarm",
@@ -138,7 +138,7 @@ const demonString = `[
   {
     "Name": "Odin",
     "Tier": 4,
-    "Attack Type": "Elec",
+    "AttackType": "Elec",
     "Resistance": "Elec",
     "Weakness": "Wind",
     "Skill": "Thunder Reign",
@@ -147,7 +147,7 @@ const demonString = `[
   {
     "Name": "Scathach",
     "Tier": 3,
-    "Attack Type": "Ice",
+    "AttackType": "Ice",
     "Resistance": "Wind",
     "Weakness": "Fire",
     "Skill": "Bufudyne",
@@ -156,7 +156,7 @@ const demonString = `[
   {
     "Name": "Trumpeter",
     "Tier": 3,
-    "Attack Type": "Support",
+    "AttackType": "Support",
     "Resistance": "-",
     "Weakness": "-",
     "Skill": "Evil Melody",
@@ -165,7 +165,7 @@ const demonString = `[
   {
     "Name": "Cu Chulainn",
     "Tier": 3,
-    "Attack Type": "Wind",
+    "AttackType": "Wind",
     "Resistance": "Wind",
     "Weakness": "Elec",
     "Skill": "Gae Bolg",
@@ -174,7 +174,7 @@ const demonString = `[
   {
     "Name": "White Rider",
     "Tier": 3,
-    "Attack Type": "Light",
+    "AttackType": "Light",
     "Resistance": "Ice",
     "Weakness": "Fire",
     "Skill": "God's Bow",
@@ -183,7 +183,7 @@ const demonString = `[
   {
     "Name": "Principality",
     "Tier": 3,
-    "Attack Type": "Light",
+    "AttackType": "Light",
     "Resistance": "Light",
     "Weakness": "Dark",
     "Skill": "Hamaon",
@@ -192,7 +192,7 @@ const demonString = `[
   {
     "Name": "Hell Biker",
     "Tier": 3,
-    "Attack Type": "Fire",
+    "AttackType": "Fire",
     "Resistance": "Dark",
     "Weakness": "Ice",
     "Skill": "Hell Burner",
@@ -201,7 +201,7 @@ const demonString = `[
   {
     "Name": "Girimekhala",
     "Tier": 3,
-    "Attack Type": "Phys",
+    "AttackType": "Phys",
     "Resistance": "Phys",
     "Weakness": "Light",
     "Skill": "One-Shot Kill",
@@ -210,7 +210,7 @@ const demonString = `[
   {
     "Name": "Daisoujou",
     "Tier": 3,
-    "Attack Type": "Light",
+    "AttackType": "Light",
     "Resistance": "Light",
     "Weakness": "Phys",
     "Skill": "Samsara",
@@ -219,7 +219,7 @@ const demonString = `[
   {
     "Name": "Black Rider",
     "Tier": 3,
-    "Attack Type": "Dark",
+    "AttackType": "Dark",
     "Resistance": "Dark",
     "Weakness": "Light",
     "Skill": "Soul Divide",
@@ -228,7 +228,7 @@ const demonString = `[
   {
     "Name": "Seth",
     "Tier": 3,
-    "Attack Type": "Wind",
+    "AttackType": "Wind",
     "Resistance": "Fire",
     "Weakness": "Light",
     "Skill": "Zandyne",
@@ -237,7 +237,7 @@ const demonString = `[
   {
     "Name": "Thor",
     "Tier": 3,
-    "Attack Type": "Elec",
+    "AttackType": "Elec",
     "Resistance": "Phys",
     "Weakness": "Wind",
     "Skill": "Ziodyne",
@@ -246,7 +246,7 @@ const demonString = `[
   {
     "Name": "Sati",
     "Tier": 2,
-    "Attack Type": "Fire",
+    "AttackType": "Fire",
     "Resistance": "Fire",
     "Weakness": "Ice",
     "Skill": "Agidyne",
@@ -255,7 +255,7 @@ const demonString = `[
   {
     "Name": "Throne",
     "Tier": 2,
-    "Attack Type": "Light",
+    "AttackType": "Light",
     "Resistance": "Fire",
     "Weakness": "Dark",
     "Skill": "Auto-Rakukaja",
@@ -264,7 +264,7 @@ const demonString = `[
   {
     "Name": "Nekomata",
     "Tier": 2,
-    "Attack Type": "Phys",
+    "AttackType": "Phys",
     "Resistance": "Wind",
     "Weakness": "Elec",
     "Skill": "Auto-Sukukaja",
@@ -273,7 +273,7 @@ const demonString = `[
   {
     "Name": "Rakshasa",
     "Tier": 2,
-    "Attack Type": "Phys",
+    "AttackType": "Phys",
     "Resistance": "Phys",
     "Weakness": "Wind",
     "Skill": "Auto-Tarukaja",
@@ -282,7 +282,7 @@ const demonString = `[
   {
     "Name": "Mother Harlot",
     "Tier": 2,
-    "Attack Type": "Ice",
+    "AttackType": "Ice",
     "Resistance": "Elec",
     "Weakness": "Phys",
     "Skill": "Death Lust",
@@ -291,7 +291,7 @@ const demonString = `[
   {
     "Name": "Mothman",
     "Tier": 2,
-    "Attack Type": "Elec",
+    "AttackType": "Elec",
     "Resistance": "Elec",
     "Weakness": "Ice",
     "Skill": "Eerie Sound",
@@ -300,7 +300,7 @@ const demonString = `[
   {
     "Name": "Incubus",
     "Tier": 2,
-    "Attack Type": "Almighty",
+    "AttackType": "Almighty",
     "Resistance": "Dark",
     "Weakness": "Phys",
     "Skill": "Energy Drain",
@@ -309,7 +309,7 @@ const demonString = `[
   {
     "Name": "Yaksini",
     "Tier": 2,
-    "Attack Type": "Phys",
+    "AttackType": "Phys",
     "Resistance": "Phys",
     "Weakness": "Fire",
     "Skill": "Getsu-ei",
@@ -318,7 +318,7 @@ const demonString = `[
   {
     "Name": "Forneus",
     "Tier": 2,
-    "Attack Type": "Ice",
+    "AttackType": "Ice",
     "Resistance": "Ice",
     "Weakness": "Fire",
     "Skill": "Makarakarn",
@@ -327,7 +327,7 @@ const demonString = `[
   {
     "Name": "Black Frost",
     "Tier": 2,
-    "Attack Type": "Dark",
+    "AttackType": "Dark",
     "Resistance": "Dark",
     "Weakness": "Light",
     "Skill": "Mudoon",
@@ -336,7 +336,7 @@ const demonString = `[
   {
     "Name": "Matador",
     "Tier": 2,
-    "Attack Type": "Wind",
+    "AttackType": "Wind",
     "Resistance": "Wind",
     "Weakness": "Elec",
     "Skill": "Red Capote",
@@ -345,7 +345,7 @@ const demonString = `[
   {
     "Name": "Succubus",
     "Tier": 2,
-    "Attack Type": "Almighty",
+    "AttackType": "Almighty",
     "Resistance": "Dark",
     "Weakness": "Phys",
     "Skill": "Soul Drain",
@@ -354,7 +354,7 @@ const demonString = `[
   {
     "Name": "Eligor",
     "Tier": 2,
-    "Attack Type": "Phys",
+    "AttackType": "Phys",
     "Resistance": "Phys",
     "Weakness": "Elec",
     "Skill": "Sukukaja",
@@ -363,7 +363,7 @@ const demonString = `[
   {
     "Name": "Red Rider",
     "Tier": 2,
-    "Attack Type": "Phys",
+    "AttackType": "Phys",
     "Resistance": "Dark",
     "Weakness": "Ice",
     "Skill": "Terror Blade",
@@ -372,7 +372,7 @@ const demonString = `[
   {
     "Name": "Decarabia",
     "Tier": 2,
-    "Attack Type": "Ice",
+    "AttackType": "Ice",
     "Resistance": "Light",
     "Weakness": "Phys",
     "Skill": "Tetrakarn",
@@ -381,7 +381,7 @@ const demonString = `[
   {
     "Name": "Pale Rider",
     "Tier": 2,
-    "Attack Type": "Support",
+    "AttackType": "Support",
     "Resistance": "Phys",
     "Weakness": "Light",
     "Skill": "Toxic Cloud",
@@ -390,7 +390,7 @@ const demonString = `[
   {
     "Name": "Ame-no-Uzume",
     "Tier": 1,
-    "Attack Type": "Light",
+    "AttackType": "Light",
     "Resistance": "Elec",
     "Weakness": "Phys",
     "Skill": "-",
@@ -399,7 +399,7 @@ const demonString = `[
   {
     "Name": "Angel",
     "Tier": 1,
-    "Attack Type": "Light",
+    "AttackType": "Light",
     "Resistance": "Light",
     "Weakness": "Phys",
     "Skill": "-",
@@ -408,7 +408,7 @@ const demonString = `[
   {
     "Name": "Ara Mitama",
     "Tier": 1,
-    "Attack Type": "Fire",
+    "AttackType": "Fire",
     "Resistance": "Fire",
     "Weakness": "Ice",
     "Skill": "-",
@@ -417,7 +417,7 @@ const demonString = `[
   {
     "Name": "Berith",
     "Tier": 1,
-    "Attack Type": "Phys",
+    "AttackType": "Phys",
     "Resistance": "Light",
     "Weakness": "Ice",
     "Skill": "-",
@@ -426,7 +426,7 @@ const demonString = `[
   {
     "Name": "Black Ooze",
     "Tier": 1,
-    "Attack Type": "Almighty",
+    "AttackType": "Almighty",
     "Resistance": "-",
     "Weakness": "All",
     "Skill": "-",
@@ -435,7 +435,7 @@ const demonString = `[
   {
     "Name": "Fortuna",
     "Tier": 1,
-    "Attack Type": "Wind",
+    "AttackType": "Wind",
     "Resistance": "Wind",
     "Weakness": "Elec",
     "Skill": "-",
@@ -444,7 +444,7 @@ const demonString = `[
   {
     "Name": "Hua Po",
     "Tier": 1,
-    "Attack Type": "Fire",
+    "AttackType": "Fire",
     "Resistance": "Dark",
     "Weakness": "Phys",
     "Skill": "-",
@@ -453,7 +453,7 @@ const demonString = `[
   {
     "Name": "Jack Frost",
     "Tier": 1,
-    "Attack Type": "Ice",
+    "AttackType": "Ice",
     "Resistance": "Ice",
     "Weakness": "Fire",
     "Skill": "-",
@@ -462,7 +462,7 @@ const demonString = `[
   {
     "Name": "Kusi Mitama",
     "Tier": 1,
-    "Attack Type": "Wind",
+    "AttackType": "Wind",
     "Resistance": "Wind",
     "Weakness": "Elec",
     "Skill": "-",
@@ -471,7 +471,7 @@ const demonString = `[
   {
     "Name": "Lilim",
     "Tier": 1,
-    "Attack Type": "Dark",
+    "AttackType": "Dark",
     "Resistance": "Dark",
     "Weakness": "Light",
     "Skill": "-",
@@ -480,7 +480,7 @@ const demonString = `[
   {
     "Name": "Mandrake",
     "Tier": 1,
-    "Attack Type": "Elec",
+    "AttackType": "Elec",
     "Resistance": "Wind",
     "Weakness": "Fire",
     "Skill": "-",
@@ -489,7 +489,7 @@ const demonString = `[
   {
     "Name": "Mokoi",
     "Tier": 1,
-    "Attack Type": "Dark",
+    "AttackType": "Dark",
     "Resistance": "Dark",
     "Weakness": "Light",
     "Skill": "-",
@@ -498,7 +498,7 @@ const demonString = `[
   {
     "Name": "Nigi Mitama",
     "Tier": 1,
-    "Attack Type": "Ice",
+    "AttackType": "Ice",
     "Resistance": "Ice",
     "Weakness": "Fire",
     "Skill": "-",
@@ -507,7 +507,7 @@ const demonString = `[
   {
     "Name": "Pixie",
     "Tier": 1,
-    "Attack Type": "Wind",
+    "AttackType": "Wind",
     "Resistance": "Light",
     "Weakness": "Phys",
     "Skill": "-",
@@ -516,7 +516,7 @@ const demonString = `[
   {
     "Name": "Preta",
     "Tier": 1,
-    "Attack Type": "Phys",
+    "AttackType": "Phys",
     "Resistance": "Dark",
     "Weakness": "Elec",
     "Skill": "-",
@@ -525,7 +525,7 @@ const demonString = `[
   {
     "Name": "Pyro Jack",
     "Tier": 1,
-    "Attack Type": "Fire",
+    "AttackType": "Fire",
     "Resistance": "Fire",
     "Weakness": "Ice",
     "Skill": "-",
@@ -534,7 +534,7 @@ const demonString = `[
   {
     "Name": "Saki Mitama",
     "Tier": 1,
-    "Attack Type": "Elec",
+    "AttackType": "Elec",
     "Resistance": "Elec",
     "Weakness": "Wind",
     "Skill": "-",
@@ -543,7 +543,7 @@ const demonString = `[
   {
     "Name": "Slime",
     "Tier": 1,
-    "Attack Type": "Almighty",
+    "AttackType": "Almighty",
     "Resistance": "-",
     "Weakness": "All",
     "Skill": "-",

@@ -174,7 +174,7 @@ export class Display {
     location[1] = event.currentTarget.id[2]
     let hoveredPiece = this.board.getPiece(location)
     this.hoveredPieceNameDisplay.innerText = hoveredPiece.type.Name
-    this.hoveredPieceAttackDisplay.innerText = hoveredPiece.type.Attack_Type
+    this.hoveredPieceAttackDisplay.innerText = hoveredPiece.type.AttackType
     this.hoveredPieceResistDisplay.innerText = hoveredPiece.type.Resistance
     this.hoveredPieceWeaknessDisplay.innerText = hoveredPiece.type.Weakness
     this.hoveredPieceDescriptionDisplay.innerText = hoveredPiece.type.Description
