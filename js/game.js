@@ -16,6 +16,7 @@ export class Game {
         this.player2King = "Demi-Fiend"
         this.player1Music = new Audio(`../music/${this.player1King}/battleMusic.mp3`)
         this.player2Music = new Audio(`../music/${this.player2King}/battleMusic.mp3`)
+        this.pascalSong = new Audio(`../music/Pascal.mp3`)
         this.turn = this.player1;
         this.enPassantTracker = new enPassantTracker
         this.movementCalculator = new MovementCalculations(this.board, this.player1, this.player2, this.enPassantTracker)
@@ -23,7 +24,7 @@ export class Game {
 
         //this order is from left to right, top to bottom.
         this.player1.pieces = ["White Rider", "Rakshasa", "Matador", "Baal", this.player1King, "Succubus", "Decarabia", "Principality", "Lilim", "Kusi Mitama", "Jack Frost", "Hua Po", "Black Ooze", "Ara Mitama", "Pixie", "Ame-no-Uzume"]
-        this.player2.pieces = ["Slime", "Saki Mitama", "Pyro Jack", "Jack Frost", "Pixie", "Nigi Mitama", "Mokoi", "Mandrake", "Cu Chulainn", "Mother Harlot", "Yaksini", "Loki", this.player2King, "Black Frost", "Mothman", "Trumpeter"]
+        this.player2.pieces = ["Slime", "Saki Mitama", "Pyro Jack", "Jack Frost", "Pixie", "Nigi Mitama", "Mokoi", "Mandrake", "Cu Chulainn", "Mother Harlot", "Yaksini", "Pascal", this.player2King, "Black Frost", "Mothman", "Trumpeter"]
 
         //create callback methods
         this.highlightCell = null;
@@ -79,6 +80,12 @@ export class Game {
             this.highlightCell(location);
             this.calculateLegalMoves(location)
             this.highlightLegalMoves(this.#legalMoves)
+
+            if (this.board.getPiece(location).type.Name == "Pascal") {
+                this.player1Music.pause()
+                this.player2Music.pause()
+                this.pascalSong.play()
+            }
         }
 
 
@@ -87,6 +94,10 @@ export class Game {
             this.unhighlightCell(location);
             this.unhighlightLegalMoves(this.#legalMoves)
             this.#currentlySelected = false;
+            this.pascalSong.pause();
+
+            this.turn == this.player1 ? this.player1Music.play() : this.player2Music.play();
+
         }
 
         //Selected the an Enemy Piece after selecting your own piece
@@ -109,7 +120,7 @@ export class Game {
 
 
                 //Hits Weakness
-                if (attacker.type.Attack_Type == defender.type.Weakness) {
+                if (attacker.type.Attack_Type == defender.type.Weakness || defender.type.Weakness === "All") {
                     console.log("Weakness Has been Hit")
                     this.board.movePiece(this.#selectedCell, location);
                     this.updateBoard();
@@ -251,14 +262,16 @@ export class Game {
     }
 
     toggleMusic() {
-        if (!this.player1Music.paused) {
-            this.player1Music.pause()
+        if (this.turn != this.player1) {
+            this.player1Music.pause();
+            this.pascalSong.pause();
             this.player2Music.play();
             console.log("player2 music should be playing")
         }
         else {
-            this.player2Music.pause()
+            this.player2Music.pause();
             this.player1Music.play();
+            this.pascalSong.pause();
             console.log("player 1 music should be playing agian.")
         }
     }
