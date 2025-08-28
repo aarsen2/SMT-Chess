@@ -3,7 +3,11 @@
 * {
     font-family: sans-serif;
     box-sizing: border-box;
+    
+}
 
+.hidden {
+    display: none !important;
 }
 
 body {
@@ -13,13 +17,30 @@ body {
     min-height: auto;
 }
 
-#gameContainer {
-    display: grid;
-    grid-template-columns: 2fr 3fr 2fr;
-    width: 100%;
+/*     Initial Screen Styling     */
+
+
+#startButton {
+    width: 100px;
+    height: 70px;
+    font-size: xx-large;
 }
 
-/*     Initial Screen Styling     */
+
+
+
+
+
+
+
+
+
+
+
+/*  Player Display Box*/
+
+
+
 
 #playerDisplay {
     width: 100%;
@@ -30,9 +51,20 @@ body {
 #playerDisplay>* {
     height: 50%;
     border: 1px solid black;
-
+    
 }
 
+
+/*     Chess Board styling     */
+
+
+        /*Main Board Syling*/
+
+#gameContainer {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    width: 100%;
+}
 
 div#chessBoard {
     border: 2px solid black;
@@ -45,23 +77,15 @@ div#chessBoard {
     aspect-ratio: 1 / 1;
 }
 
-div#chessboard>div:hover {
-    background-color: lightgray !important;
+.boardSquare {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 
 
-
-.hidden {
-    display: none !important;
-}
-
-
-#startButton {
-    width: 100px;
-    height: 70px;
-    font-size: xx-large;
-}
 
 .light {
     background-color: white;
@@ -71,13 +95,13 @@ div#chessboard>div:hover {
     background-color: lightgray;
 }
 
-.light:hover {
+
+/*Interaction Stlying for the chess board*/
+
+.light:hover, .dark:hover {
     background-color: darkGray;
 }
 
-.dark:hover {
-    background-color: darkGray;
-}
 
 .selected {
     background-color: gray;
@@ -92,12 +116,6 @@ div#chessboard>div:hover {
     background-color: gray;
 }
 
-.boardSquare {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
 
 .piece {
     width: 80%;
@@ -123,17 +141,6 @@ div#chessboard>div:hover {
     top: -5px;
     left: -10px;
 }
-
-
-
-
-
-/*     Main Game styling     */
-
-
-/*  Hover Selection Box*/
-
-
 
 #hoverSelectionBox {
     /*background-image: radial-gradient(ellipse at center, rgb(50,50,50), rgb(100,100,100), white );*/
@@ -175,7 +182,7 @@ div#chessboard>div:hover {
 .pieceLabel {
     margin: 2%;
     width: 100px;
-
+    
 }
 
 hr {
